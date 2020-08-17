@@ -25,16 +25,21 @@ namespace Leaderboard
         public MainPage()
         {
             this.InitializeComponent();
+            ContentFrame.Navigate(typeof(Leaderboard));
         }
 
-        private void HamburgerClick(object sender, RoutedEventArgs e)
+        private void HomeButton_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
+            ContentFrame.Navigate(typeof(Leaderboard));
         }
 
-        private void IconsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
+        private void NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
+        {
+            if(args.IsSettingsInvoked)
+            {
+                ContentFrame.Navigate(typeof(Settings));
+            }
         }
     }
 }

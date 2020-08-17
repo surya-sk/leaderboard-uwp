@@ -6,30 +6,25 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <RelativePanel>
-            <Button Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" FontSize="24" Click="HamburgerClick" />
-        </RelativePanel>
-
-        <SplitView Name="MySplitView" Grid.Row="1" DisplayMode="CompactOverlay" OpenPaneLength="200" CompactPaneLength="44" HorizontalAlignment="Left">
-            <SplitView.Pane>
-                <ListBox Name="IconsListBox" SelectionMode="Single" SelectionChanged="IconsListBox_SelectionChanged" VerticalAlignment="Bottom">
-                    <ListBoxItem>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE115;"/>
-                            <TextBlock FontSize="24" Text="Settings" Margin="20,0,0,0"/>
-                        </StackPanel>
-                    </ListBoxItem>
-                </ListBox>
-            </SplitView.Pane>
-        </SplitView>
-
-        <Frame Name="MyFrame"/>
+        <muxc:NavigationView PaneDisplayMode="Auto" ItemInvoked="NavigationView_ItemInvoked">
+            <muxc:NavigationView.MenuItems>
+                <muxc:NavigationViewItem Name="HomeButton" Content="Home" SelectsOnInvoked="True" PointerPressed="HomeButton_PointerPressed">
+                    <muxc:NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE10F;"/>
+                    </muxc:NavigationViewItem.Icon>
+                </muxc:NavigationViewItem>
+            </muxc:NavigationView.MenuItems>
+            <Frame x:Name="ContentFrame" Margin="24">
+                <Frame.ContentTransitions>
+                    <TransitionCollection>
+                        <NavigationThemeTransition/>
+                    </TransitionCollection>
+                </Frame.ContentTransitions>
+            </Frame>
+        </muxc:NavigationView>
     </Grid>
 </Page>

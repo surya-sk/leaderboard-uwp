@@ -9,22 +9,29 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="0" Text="Player" FontSize="36" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Column="1" Text="Score" FontSize="36" HorizontalAlignment="Center"/>
 
-        <RelativePanel Grid.Column="0" Grid.Row="1">
-            <TextBox PlaceholderText="Add Player" FontSize="36"/>
-        </RelativePanel>
-        <RelativePanel Grid.Column="1" Grid.Row="1">
-            <TextBox PlaceholderText="Add Score" FontSize="36"/>
-        </RelativePanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/> 
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="Player(s)" FontSize="50"/>
+        <TextBlock Text="Score(s)" FontSize="50" Grid.Column="1"/>
+
+        <StackPanel Orientation="Vertical" MaxWidth="300" Grid.Row="1">
+            <TextBox PlaceholderText="Player name" />
+            <TextBox PlaceholderText="Player name" />
+            <TextBox PlaceholderText="Player name" />
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+            <TextBox PlaceholderText="Player score" />
+            <TextBox PlaceholderText="Player score" />
+            <TextBox PlaceholderText="Player score" />
+        </StackPanel>
     </Grid>
 </Page>
