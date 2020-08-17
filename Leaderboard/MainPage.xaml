@@ -10,11 +10,16 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <muxc:NavigationView PaneDisplayMode="Auto" ItemInvoked="NavigationView_ItemInvoked">
+        <muxc:NavigationView Name="NavView" PaneDisplayMode="Auto" ItemInvoked="NavigationView_ItemInvoked">
             <muxc:NavigationView.MenuItems>
-                <muxc:NavigationViewItem Name="HomeButton" Content="Home" SelectsOnInvoked="True" PointerPressed="HomeButton_PointerPressed">
+                <muxc:NavigationViewItem Name="HomeButton" Content="Home" SelectsOnInvoked="True" PointerPressed="HomeButton_PointerPressed" IsSelected="True">
                     <muxc:NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE10F;"/>
+                    </muxc:NavigationViewItem.Icon>
+                </muxc:NavigationViewItem>
+                <muxc:NavigationViewItem x:Uid="LeaderboardItem" Content="Game" SelectsOnInvoked="True" PointerPressed="NavigationViewItem_PointerPressed">
+                    <muxc:NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE768;"/>
                     </muxc:NavigationViewItem.Icon>
                 </muxc:NavigationViewItem>
             </muxc:NavigationView.MenuItems>

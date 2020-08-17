@@ -25,12 +25,13 @@ namespace Leaderboard
         public MainPage()
         {
             this.InitializeComponent();
-            ContentFrame.Navigate(typeof(Leaderboard));
+            ContentFrame.Navigate(typeof(Homepage));
         }
 
         private void HomeButton_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            ContentFrame.Navigate(typeof(Leaderboard));
+            ContentFrame.Navigate(typeof(Homepage));
+            
         }
 
 
@@ -40,6 +41,11 @@ namespace Leaderboard
             {
                 ContentFrame.Navigate(typeof(Settings));
             }
+        }
+
+        private void NavigationViewItem_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            ContentFrame.Navigate(typeof(Leaderboard));
         }
     }
 }
