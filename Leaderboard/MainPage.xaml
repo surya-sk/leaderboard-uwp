@@ -9,6 +9,27 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <RelativePanel>
+            <Button Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" FontSize="24" Click="HamburgerClick" />
+        </RelativePanel>
 
+        <SplitView Name="MySplitView" Grid.Row="1" DisplayMode="CompactOverlay" OpenPaneLength="200" CompactPaneLength="44" HorizontalAlignment="Left">
+            <SplitView.Pane>
+                <ListBox Name="IconsListBox" SelectionMode="Single" SelectionChanged="IconsListBox_SelectionChanged" VerticalAlignment="Bottom">
+                    <ListBoxItem>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE115;"/>
+                            <TextBlock FontSize="24" Text="Settings" Margin="20,0,0,0"/>
+                        </StackPanel>
+                    </ListBoxItem>
+                </ListBox>
+            </SplitView.Pane>
+        </SplitView>
+
+        <Frame Name="MyFrame"/>
     </Grid>
 </Page>
