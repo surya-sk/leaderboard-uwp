@@ -9,6 +9,13 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="Settings"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Settings" FontSize="56"/>
+        <ToggleSwitch Header="Theme (restart required)" OnContent="Light" OffContent="Dark" Toggled="ToggleSwitch_Toggled" Loaded="ToggleSwitch_Loaded" Grid.Row="1"/>
+        <TextBlock Text="Related Settings" Grid.Row="2" />
     </Grid>
 </Page>

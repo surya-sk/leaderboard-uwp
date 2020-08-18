@@ -10,7 +10,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <muxc:NavigationView Name="NavView" PaneDisplayMode="Auto" ItemInvoked="NavigationView_ItemInvoked">
+        <muxc:NavigationView Name="NavView" PaneDisplayMode="LeftCompact" ItemInvoked="NavigationView_ItemInvoked">
             <muxc:NavigationView.MenuItems>
                 <muxc:NavigationViewItem Name="HomeButton" Content="Home" SelectsOnInvoked="True" PointerPressed="HomeButton_PointerPressed" IsSelected="True">
                     <muxc:NavigationViewItem.Icon>
