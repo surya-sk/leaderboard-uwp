@@ -37,5 +37,7 @@ namespace Leaderboard
         {
             ((ToggleSwitch)sender).IsOn = App.Current.RequestedTheme == ApplicationTheme.Light;
         }
+
     }
+        
 }
