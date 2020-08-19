@@ -17,7 +17,6 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="LinksPanel.(Grid.Row)" Value="2"/>
-                        <Setter Target="LinksPanel.(Grid.Column)" Value="0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="VisualStateDesktop">
@@ -26,7 +25,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="LinksPanel.(Grid.Row)" Value="1"/>
-                        <Setter Target="LinksPanel.(Grid.Column)" Value="1"/>
+                        <Setter Target="LinksPanel.HorizontalAlignment" Value="Right"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -36,12 +35,8 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
         <TextBlock Text="" />
         <TextBlock Text="Settings" FontSize="56"/>
         <ToggleSwitch Header="Theme (restart required)" OnContent="Light" OffContent="Dark" Toggled="ToggleSwitch_Toggled" Loaded="ToggleSwitch_Loaded" Grid.Row="1"/>
@@ -54,5 +49,28 @@
                 </Hyperlink>
             </TextBlock>
         </StackPanel>
+        <ScrollViewer Grid.Row="3">
+            <StackPanel Name="AboutPanel" Orientation="Vertical">
+                <TextBlock Text="About" FontSize="40"/>
+                <TextBlock Text="" />
+                <TextBlock Text="Leaderboard is a boardgame companion built to keep track of player scores." TextWrapping="WrapWholeWords"/>
+                <TextBlock Text="This project is and always will be free and open-source." TextWrapping="WrapWholeWords"/>
+                <TextBlock TextWrapping="Wrap" Margin="0,20,0,0">
+                <Hyperlink NavigateUri="https://www.microsoft.com">
+                    <Run Text="Github repository" />
+                </Hyperlink>
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="0,20,0,0">
+                <Hyperlink NavigateUri="https://www.microsoft.com">
+                    <Run Text="Github profile" />
+                </Hyperlink>
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="0,20,0,0">
+                <Hyperlink NavigateUri="https://www.microsoft.com">
+                    <Run Text="Contact developer" />
+                </Hyperlink>
+                </TextBlock>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
