@@ -9,13 +9,50 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="VisualStateMobile">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LinksPanel.(Grid.Row)" Value="2"/>
+                        <Setter Target="LinksPanel.(Grid.Column)" Value="0"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VisualStateDesktop">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LinksPanel.(Grid.Row)" Value="1"/>
+                        <Setter Target="LinksPanel.(Grid.Column)" Value="1"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="" />
         <TextBlock Text="Settings" FontSize="56"/>
         <ToggleSwitch Header="Theme (restart required)" OnContent="Light" OffContent="Dark" Toggled="ToggleSwitch_Toggled" Loaded="ToggleSwitch_Loaded" Grid.Row="1"/>
-        <TextBlock Text="Related Settings" Grid.Row="2" />
+        <StackPanel Name="LinksPanel" Orientation="Vertical">
+            <TextBlock Text="Related Settings" />
+            <TextBlock Text="" />
+            <TextBlock TextWrapping="Wrap">
+                <Hyperlink NavigateUri="ms-settings:colors">
+                    <Run Text="Windows colour settings"/>
+                </Hyperlink>
+            </TextBlock>
+        </StackPanel>
     </Grid>
 </Page>

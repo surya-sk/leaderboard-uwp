@@ -10,7 +10,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <muxc:NavigationView Name="NavView" PaneDisplayMode="LeftCompact" ItemInvoked="NavigationView_ItemInvoked">
+        <muxc:NavigationView Name="NavView" PaneDisplayMode="Auto" OpenPaneLength="180" ItemInvoked="NavigationView_ItemInvoked">
             <muxc:NavigationView.MenuItems>
                 <muxc:NavigationViewItem Name="HomeButton" Content="Home" SelectsOnInvoked="True" PointerPressed="HomeButton_PointerPressed" IsSelected="True">
                     <muxc:NavigationViewItem.Icon>
@@ -23,13 +23,7 @@
                     </muxc:NavigationViewItem.Icon>
                 </muxc:NavigationViewItem>
             </muxc:NavigationView.MenuItems>
-            <Frame x:Name="ContentFrame" Margin="24">
-                <Frame.ContentTransitions>
-                    <TransitionCollection>
-                        <NavigationThemeTransition/>
-                    </TransitionCollection>
-                </Frame.ContentTransitions>
-            </Frame>
+            <Frame Name="ContentFrame" Margin="20,20,0,0"/>
         </muxc:NavigationView>
     </Grid>
 </Page>
