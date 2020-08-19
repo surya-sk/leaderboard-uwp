@@ -10,6 +10,15 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="Leaderboards" FontSize="56"/>
+        <StackPanel Orientation="Vertical" Spacing="20">
+            <TextBlock Text="Leaderboards" FontSize="56"/>
+            <Button x:Name="InputGame" Click="InputGame_Click">
+                <RelativePanel>
+                    <FontIcon x:Name="AddIcon" Glyph="&#xE710;"/>
+                    <TextBlock Text=" Add Game" RelativePanel.RightOf="AddIcon" />
+                </RelativePanel>
+            </Button>
+        </StackPanel>
+        
     </Grid>
 </Page>

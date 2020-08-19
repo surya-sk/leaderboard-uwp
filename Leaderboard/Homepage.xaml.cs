@@ -26,5 +26,11 @@ namespace Leaderboard
         {
             this.InitializeComponent();
         }
+
+        private void InputGame_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO Take input
+            
+        }
     }
 }

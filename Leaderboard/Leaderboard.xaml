@@ -12,23 +12,33 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/> 
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBox Name="GameTitle" PlaceholderText="Enter game name" />
-
+        <TextBlock Text="Game Name" FontSize="50"/>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Margin="0,20,0,0">
-                <TextBox PlaceholderText="Name" />    
+            <TextBlock Text="Player" HorizontalAlignment="Center" FontSize="35"/>
+            <TextBlock Text="Score" Grid.Column="1" HorizontalAlignment="Center" FontSize="35"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel x:Name="PlayerPanel" Orientation="Vertical">
+                <TextBox PlaceholderText="Enter name" />
             </StackPanel>
-            <StackPanel Margin="0,20,0,0" Grid.Column="1">
-                <TextBox PlaceholderText="Score"/>
+            <StackPanel x:Name="ScorePanel" Grid.Column="1" Orientation="Vertical">
+                <TextBox PlaceholderText="Enter score" />
             </StackPanel>
+            
         </Grid>
     </Grid>
 </Page>
