@@ -10,7 +10,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <StackPanel Orientation="Vertical" Spacing="20">
+        <StackPanel x:Name="HomePanel" Orientation="Vertical" Spacing="20">
             <TextBlock Text="Leaderboards" FontSize="56"/>
             <Button x:Name="InputGame" Click="InputGame_Click">
                 <RelativePanel>
@@ -18,6 +18,21 @@
                     <TextBlock Text=" Add Game" RelativePanel.RightOf="AddIcon" />
                 </RelativePanel>
             </Button>
+            <StackPanel x:Name="GameDetPanel" Orientation="Vertical" Visibility="Collapsed" Spacing="30">
+                <muxc:RadioButtons x:Name="GameType" Header="Game Type" FontSize="28" MaxColumns="2" >
+                    <x:String>Leaderboard</x:String>
+                    <x:String>Eliminator</x:String>
+                </muxc:RadioButtons>
+                <StackPanel Orientation="Horizontal" Spacing="30">
+                    <TextBlock Text="Number of players: " FontSize="28"/>
+                    <muxc:NumberBox x:Name="NumInput" Height="20" Width="60"/>
+                </StackPanel>
+                <Button x:Name="CreateGameButton" Content="Submit" Click="CreateGameButton_Click"/>
+                <TextBlock x:Name="TestText"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text ="Choose a game to open" FontSize="40" />
+            </StackPanel>
         </StackPanel>
         
     </Grid>

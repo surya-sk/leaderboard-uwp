@@ -22,6 +22,7 @@ namespace Leaderboard
     /// </summary>
     public sealed partial class Homepage : Page
     {
+        string sel;
         public Homepage()
         {
             this.InitializeComponent();
@@ -30,7 +31,16 @@ namespace Leaderboard
         private void InputGame_Click(object sender, RoutedEventArgs e)
         {
             //TODO Take input
-            
+            InputGame.Visibility = Visibility.Collapsed;
+            GameDetPanel.Visibility = Visibility.Visible;
         }
+
+        private void CreateGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            sel = GameType.SelectedItem.ToString();
+            Double num = NumInput.Value;
+            TestText.Text = sel + " " + num;
+        }
+
     }
 }

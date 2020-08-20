@@ -26,5 +26,10 @@ namespace Leaderboard
         {
             this.InitializeComponent();
         }
+
+        public void TakeBoardInput(string type, double num)
+        {
+
+        }
     }
 }
