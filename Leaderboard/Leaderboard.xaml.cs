@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,14 +23,23 @@ namespace Leaderboard
     /// </summary>
     public sealed partial class Leaderboard : Page
     {
+        double Num = Homepage.GetNum();
+        string GameName = Homepage.GetGameName();
+        string GameType = Homepage.GetGameType();
+        private ObservableCollection<PlayerStat> PlayerStats;
         public Leaderboard()
         {
             this.InitializeComponent();
+            GameTitle.Text = GameName;
+            PlayerStats = PlayerStatList.GetPlayerStats();
+            for(int i =0; i<Num;i++)
+            {
+
+                PlayerStats.Add(new PlayerStat { PlayerName = "Enter name", PlayerScore = Num });
+            }
         }
 
-        public void TakeBoardInput(string type, double num)
-        {
-
-        }
+        
+        
     }
 }

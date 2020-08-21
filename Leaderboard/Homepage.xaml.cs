@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,7 +23,8 @@ namespace Leaderboard
     /// </summary>
     public sealed partial class Homepage : Page
     {
-        string sel;
+        static string GameName, Type;
+        static double Num;
         public Homepage()
         {
             this.InitializeComponent();
@@ -30,17 +32,32 @@ namespace Leaderboard
 
         private void InputGame_Click(object sender, RoutedEventArgs e)
         {
-            //TODO Take input
             InputGame.Visibility = Visibility.Collapsed;
             GameDetPanel.Visibility = Visibility.Visible;
         }
 
         private void CreateGameButton_Click(object sender, RoutedEventArgs e)
         {
-            sel = GameType.SelectedItem.ToString();
-            Double num = NumInput.Value;
-            TestText.Text = sel + " " + num;
+            GameName = NameInput.Text;
+            Type = GameType.SelectedItem.ToString();
+            Num = NumInput.Value;
+            Leaderboard leaderboard = new Leaderboard();
+            this.Frame.Navigate(typeof(Leaderboard));
         }
 
+       public static double GetNum()
+        {
+            return Num;
+        }
+
+        public static string GetGameName()
+        {
+            return GameName;
+        }
+
+        public static string GetGameType()
+        {
+            return Type;
+        }
     }
 }

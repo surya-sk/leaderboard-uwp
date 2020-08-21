@@ -6,39 +6,42 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:data="using:Leaderboard"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Game Name" FontSize="50"/>
+        <TextBlock x:Name="GameTitle" FontSize="50"/>
 
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="Player" HorizontalAlignment="Center" FontSize="35"/>
-            <TextBlock Text="Score" Grid.Column="1" HorizontalAlignment="Center" FontSize="35"/>
-        </Grid>
 
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel x:Name="PlayerPanel" Orientation="Vertical">
-                <TextBox PlaceholderText="Enter name" />
-            </StackPanel>
-            <StackPanel x:Name="ScorePanel" Grid.Column="1" Orientation="Vertical">
-                <TextBox PlaceholderText="Enter score" />
-            </StackPanel>
-            
-        </Grid>
+
+        <controls:DataGrid AutoGenerateColumns="False" ItemsSource="{x:Bind PlayerStats}" Grid.Row="1">
+            <controls:DataGrid.Columns>
+                <controls:DataGridTemplateColumn Header="Name" Width="*">
+                    <controls:DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate x:DataType="data:PlayerStat">
+                            <TextBox Text="{x:Bind PlayerName}"/>
+                        </DataTemplate>
+                    </controls:DataGridTemplateColumn.CellEditingTemplate>
+                </controls:DataGridTemplateColumn>
+                <controls:DataGridTemplateColumn Header="Score" Width="*">
+                    <controls:DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate x:DataType="data:PlayerStat">
+                            <muxc:NumberBox Value="{x:Bind PlayerScore}"/>
+                        </DataTemplate>
+                    </controls:DataGridTemplateColumn.CellEditingTemplate>
+                </controls:DataGridTemplateColumn>
+            </controls:DataGrid.Columns>
+        </controls:DataGrid>
+
+
+
     </Grid>
 </Page>

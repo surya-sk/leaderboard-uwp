@@ -9,69 +9,49 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="VisualStateGroup">
-                <VisualState x:Name="VisualStateMobile">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="LinksPanel.(Grid.Row)" Value="2"/>
-                        <Setter Target="ScrollView.(Grid.Row)" Value="3"/>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="VisualStateDesktop">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="640"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="LinksPanel.(Grid.Row)" Value="1"/>
-                        <Setter Target="LinksPanel.HorizontalAlignment" Value="Right"/>
-                        <Setter Target="ScrollView.(Grid.Row)" Value="2"/>
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
+       
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="" />
-        <TextBlock Text="Settings" FontSize="56"/>
-        <ToggleSwitch Header="Theme (restart required)" OnContent="Light" OffContent="Dark" Toggled="ToggleSwitch_Toggled" Loaded="ToggleSwitch_Loaded" Grid.Row="1"/>
-        <StackPanel Name="LinksPanel" Orientation="Vertical" Margin="0,0,20,0">
-            <TextBlock Text="Related Settings" />
-            <TextBlock Text="" />
-            <TextBlock TextWrapping="Wrap">
-                <Hyperlink NavigateUri="ms-settings:colors">
-                    <Run Text="Windows colour settings"/>
-                </Hyperlink>
-            </TextBlock>
-        </StackPanel>
-        <ScrollViewer Name="ScrollView" HorizontalScrollBarVisibility="Auto">
-            <StackPanel Name="AboutPanel" Orientation="Vertical">
-                <TextBlock Text="About" FontSize="40"/>
-                <TextBlock Text="" />
-                <TextBlock Text="Leaderboard is a boardgame companion built to keep track of player scores." TextWrapping="WrapWholeWords"/>
-                <TextBlock Text="This project is and always will be free and open-source." TextWrapping="WrapWholeWords"/>
-                <TextBlock TextWrapping="Wrap" Margin="0,20,0,0">
-                <Hyperlink NavigateUri="https://github.com/surya-sk/leaderboard-windows">
-                    <Run Text="Github repository" />
-                </Hyperlink>
-                </TextBlock>
-                <TextBlock TextWrapping="Wrap" Margin="0,20,0,0">
-                <Hyperlink NavigateUri="https://github.com/surya-sk">
-                    <Run Text="Github profile" />
-                </Hyperlink>
-                </TextBlock>
-                <TextBlock TextWrapping="Wrap" Margin="0,20,0,0">
-                <Hyperlink x:Name="MailLink" NavigateUri="mailto:surya.sk05@outlook.com">
-                    <Run Text="Contact developer" />
-                </Hyperlink>
-                </TextBlock>
+        
+        <TextBlock Text="Settings" FontSize="56" Margin="0,20,0,20"/>
+        
+        
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Row="1">
+            <StackPanel Orientation="Vertical" Spacing="30">
+
+                <ToggleSwitch Header="Theme (restart required)" OnContent="Light" OffContent="Dark" Toggled="ToggleSwitch_Toggled" Loaded="ToggleSwitch_Loaded" />
+                <StackPanel Spacing="10">
+                    <TextBlock Text="About" FontSize="40"/>
+                    <TextBlock Text="Leaderboard is a boardgame companion built to keep track of player scores." TextWrapping="WrapWholeWords"/>
+                    <TextBlock Text="This project is and always will be free and open-source." TextWrapping="WrapWholeWords"/>
+                    <TextBlock TextWrapping="Wrap" Margin="0,20,0,0">
+                    <Hyperlink NavigateUri="https://github.com/surya-sk/leaderboard-windows">
+                        <Run Text="Github repository" />
+                    </Hyperlink>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" Margin="0,20,0,0">
+                    <Hyperlink NavigateUri="https://github.com/surya-sk">
+                        <Run Text="Github profile" />
+                    </Hyperlink>
+                        </TextBlock>
+                    <TextBlock TextWrapping="Wrap" Margin="0,20,0,0">
+                    <Hyperlink x:Name="MailLink" NavigateUri="mailto:surya.sk05@outlook.com">
+                        <Run Text="Contact developer" />
+                    </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Spacing="10">
+                    <TextBlock Text="Related Settings" FontSize="40"/>
+                    <TextBlock TextWrapping="Wrap">
+                        <Hyperlink NavigateUri="ms-settings:colors">
+                            <Run Text="Windows colour settings"/>
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+                
             </StackPanel>
         </ScrollViewer>
     </Grid>

@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:data="using:Leaderboard"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
@@ -19,19 +20,18 @@
                 </RelativePanel>
             </Button>
             <StackPanel x:Name="GameDetPanel" Orientation="Vertical" Visibility="Collapsed" Spacing="30">
+
+                <TextBox x:Name="NameInput" Header="Enter Game Name" Width="200" HorizontalAlignment="Left"/>
                 <muxc:RadioButtons x:Name="GameType" Header="Game Type" FontSize="28" MaxColumns="2" >
                     <x:String>Leaderboard</x:String>
                     <x:String>Eliminator</x:String>
                 </muxc:RadioButtons>
                 <StackPanel Orientation="Horizontal" Spacing="30">
                     <TextBlock Text="Number of players: " FontSize="28"/>
-                    <muxc:NumberBox x:Name="NumInput" Height="20" Width="60"/>
+                    <muxc:NumberBox x:Name="NumInput" />
                 </StackPanel>
                 <Button x:Name="CreateGameButton" Content="Submit" Click="CreateGameButton_Click"/>
                 <TextBlock x:Name="TestText"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text ="Choose a game to open" FontSize="40" />
             </StackPanel>
         </StackPanel>
         
