@@ -33,6 +33,7 @@
                 <Button x:Name="CreateGameButton" Content="Submit" Click="CreateGameButton_Click"/>
                 <TextBlock x:Name="TestText"/>
             </StackPanel>
+            <TextBlock x:Name="TestBlock"/>
         </StackPanel>
         
     </Grid>

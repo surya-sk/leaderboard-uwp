@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Leaderboard.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -23,11 +24,29 @@ namespace Leaderboard
     /// </summary>
     public sealed partial class Homepage : Page
     {
-        static string GameName, Type;
-        static double Num;
+        string GameName, Type;
+        double Num;
+        private ObservableCollection<PlayerStat> PlayerStats;
+        private ObservableCollection<Game> games;
         public Homepage()
         {
             this.InitializeComponent();
+            Profile.GetInstance().ReadProfile();
+            games = Profile.GetInstance().GetGamesList();
+            if(games == null)
+            {
+                TestBlock.Text = "No Games";
+            }
+            else
+            {
+                Game TestGame;
+                for (int i = 0; i < games.Count; i++)
+                {
+                    TestGame = games[i];
+                    TestBlock.Text += TestGame.ToString();
+                }
+            }
+            
         }
 
         private void InputGame_Click(object sender, RoutedEventArgs e)
@@ -41,23 +60,35 @@ namespace Leaderboard
             GameName = NameInput.Text;
             Type = GameType.SelectedItem.ToString();
             Num = NumInput.Value;
-            Leaderboard leaderboard = new Leaderboard();
-            this.Frame.Navigate(typeof(Leaderboard));
+            CreateNewGame();
+            InputGame.Visibility = Visibility.Visible;
+            GameDetPanel.Visibility = Visibility.Collapsed;
+            this.Frame.Navigate(typeof(Homepage));
+            //this.Frame.Navigate(typeof(Leaderboard));
         }
 
-       public static double GetNum()
+        private void CreateNewGame()
         {
-            return Num;
-        }
-
-        public static string GetGameName()
-        {
-            return GameName;
-        }
-
-        public static string GetGameType()
-        {
-            return Type;
+            PlayerStats = PlayerStatList.GetPlayerStats();
+            for (int i = 0; i < Num; i++)
+            {
+                PlayerStats.Add(new PlayerStat { PlayerName = "Enter name", PlayerScore = 0 });
+            }
+            TestBlock.Text += Num.ToString();
+            Game game = new Game() { GameName = GameName, GameType = Type, NumPlayers = Num, PlayerStatList = PlayerStats  } ;
+            if (games == null)
+            {
+                games = new ObservableCollection<Game>();
+                games.Add(game);
+                Profile.GetInstance().SaveSettings(games);
+                Profile.GetInstance().WriteProfile();
+            }
+            else
+            {
+                games.Add(game);
+                Profile.GetInstance().SaveSettings(games);
+                Profile.GetInstance().WriteProfile();
+            }
         }
     }
 }

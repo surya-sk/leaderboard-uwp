@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Leaderboard.Models;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -23,23 +24,12 @@ namespace Leaderboard
     /// </summary>
     public sealed partial class Leaderboard : Page
     {
-        double Num = Homepage.GetNum();
-        string GameName = Homepage.GetGameName();
-        string GameType = Homepage.GetGameType();
-        private ObservableCollection<PlayerStat> PlayerStats;
         public Leaderboard()
         {
             this.InitializeComponent();
-            GameTitle.Text = GameName;
-            PlayerStats = PlayerStatList.GetPlayerStats();
-            for(int i =0; i<Num;i++)
-            {
-
-                PlayerStats.Add(new PlayerStat { PlayerName = "Enter name", PlayerScore = Num });
-            }
         }
 
-        
+
         
     }
 }

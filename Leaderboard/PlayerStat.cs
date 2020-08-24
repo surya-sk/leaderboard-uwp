@@ -12,7 +12,7 @@ namespace Leaderboard
         public string PlayerName { get; set; }
         public double PlayerScore { get; set; }
     }
-
+    [System.Serializable]
     class PlayerStatList
     {
         public static ObservableCollection<PlayerStat> GetPlayerStats()
@@ -20,5 +20,6 @@ namespace Leaderboard
             var PlayerSt = new ObservableCollection<PlayerStat>();
             return PlayerSt;
         }
+
     }
 }

@@ -10,7 +10,6 @@
     xmlns:data="using:Leaderboard"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
     <Grid>
 
         <Grid.RowDefinitions>
@@ -18,28 +17,31 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="GameTitle" FontSize="50"/>
+        <StackPanel Orientation="Vertical" Margin="0,0,0,40">
+            <TextBlock x:Name="GameTitle" FontSize="50"/>
+            <TextBlock x:Name="Type" FontSize="18"/>
+            <TextBlock x:Name="TestBox" />
+        </StackPanel>
 
 
-
-        <controls:DataGrid AutoGenerateColumns="False" ItemsSource="{x:Bind PlayerStats}" Grid.Row="1">
+        <!--<controls:DataGrid AutoGenerateColumns="False" ItemsSource="{x:Bind PlayerStats}" Grid.Row="1" ColumnHeaderHeight="30" CanUserReorderColumns="True">
             <controls:DataGrid.Columns>
-                <controls:DataGridTemplateColumn Header="Name" Width="*">
+                <controls:DataGridTemplateColumn Header="Player" Width="*" >
                     <controls:DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate x:DataType="data:PlayerStat">
-                            <TextBox Text="{x:Bind PlayerName}"/>
+                            <TextBox Text="{x:Bind PlayerName}" BorderThickness="0"/>
                         </DataTemplate>
                     </controls:DataGridTemplateColumn.CellEditingTemplate>
                 </controls:DataGridTemplateColumn>
                 <controls:DataGridTemplateColumn Header="Score" Width="*">
                     <controls:DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate x:DataType="data:PlayerStat">
-                            <muxc:NumberBox Value="{x:Bind PlayerScore}"/>
+                            <muxc:NumberBox Value="{x:Bind PlayerScore}" BorderBrush="Green"/>
                         </DataTemplate>
                     </controls:DataGridTemplateColumn.CellEditingTemplate>
                 </controls:DataGridTemplateColumn>
             </controls:DataGrid.Columns>
-        </controls:DataGrid>
+        </controls:DataGrid>-->
 
 
 
