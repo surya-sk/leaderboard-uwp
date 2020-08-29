@@ -12,23 +12,26 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <muxc:NavigationView Name="NavView" PaneDisplayMode="Auto" OpenPaneLength="180" ItemInvoked="NavigationView_ItemInvoked" PaneTitle="Leaderboard">
-            <muxc:NavigationView.MenuItems>
-                <muxc:NavigationViewItem Name="HomeButton" Content="Home" SelectsOnInvoked="True" PointerPressed="HomeButton_PointerPressed" IsSelected="True">
-                    <muxc:NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE10F;"/>
-                    </muxc:NavigationViewItem.Icon>
-                </muxc:NavigationViewItem>
-                <controls:MasterDetailsView ItemsSource="{x:Bind games}">
-                    <controls:MasterDetailsView.ItemTemplate>
-                        <DataTemplate x:DataType="data:Game">
-                            <TextBlock Text="{x:Bind GameName}"/>
-                        </DataTemplate>
-                    </controls:MasterDetailsView.ItemTemplate>
-                </controls:MasterDetailsView>
-            </muxc:NavigationView.MenuItems>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <muxc:NavigationView Name="NavView" PaneDisplayMode="Auto" ItemInvoked="NavView_ItemInvoked" PaneTitle="Games" IsSettingsVisible="False" MenuItemsSource="{x:Bind games}">
+            <muxc:NavigationView.MenuItemTemplate>
+                <DataTemplate x:DataType="data:Game">
+                    <NavigationViewItem Tag="{x:Bind id}" Content="{x:Bind GameName}">
+                        <NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xE768;"/>
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                </DataTemplate>
+            </muxc:NavigationView.MenuItemTemplate>
             <Frame Name="ContentFrame" Margin="20,20,0,0"/>
         </muxc:NavigationView>
         <Button Content="Re" Click="Button_Click"/>
+        <CommandBar Grid.Row="1">
+            <AppBarButton x:Name="HomeButton" Label="Home" Icon="Home" Click="HomeButton_Click"/>
+            <AppBarButton x:Name="SettingsButton" Label="Settings" Icon="Setting" Click="SettingsButton_Click"/>
+        </CommandBar>
     </Grid>
 </Page>

@@ -40,15 +40,6 @@ namespace Leaderboard
             
         }
 
-
-        private void NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
-        {
-            if(args.IsSettingsInvoked)
-            {
-                ContentFrame.Navigate(typeof(Settings));
-            }
-        }
-
         private void NavigationViewItem_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             ContentFrame.Navigate(typeof(Leaderboard));
@@ -57,6 +48,24 @@ namespace Leaderboard
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
+        }
+
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Auto;
+            ContentFrame.Navigate(typeof(Homepage));
+        }
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(typeof(Settings));
+            NavView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.LeftCompact;
+        }
+
+        private void NavView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
+        {
+            NavigationViewItem SelectedItem = args.InvokedItem as NavigationViewItem;
+            ContentFrame.Navigate(typeof(Leaderboard), SelectedItem.Tag);
         }
     }
 }
