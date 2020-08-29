@@ -75,7 +75,8 @@ namespace Leaderboard
                 PlayerStats.Add(new PlayerStat { PlayerName = "Enter name", PlayerScore = 0 });
             }
             TestBlock.Text += Num.ToString();
-            Game game = new Game() { GameName = GameName, GameType = Type, NumPlayers = Num, PlayerStatList = PlayerStats  } ;
+            Profile.id++;
+            Game game = new Game() { id = Profile.id,GameName = GameName, GameType = Type, NumPlayers = Num, PlayerStatList = PlayerStats  } ;
             if (games == null)
             {
                 games = new ObservableCollection<Game>();
