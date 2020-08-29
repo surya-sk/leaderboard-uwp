@@ -7,6 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:data="using:Leaderboard.Models"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
@@ -17,13 +19,16 @@
                         <FontIcon Glyph="&#xE10F;"/>
                     </muxc:NavigationViewItem.Icon>
                 </muxc:NavigationViewItem>
-                <muxc:NavigationViewItem x:Uid="LeaderboardItem" Content="Game" SelectsOnInvoked="True" PointerPressed="NavigationViewItem_PointerPressed">
-                    <muxc:NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE768;"/>
-                    </muxc:NavigationViewItem.Icon>
-                </muxc:NavigationViewItem>
+                <controls:MasterDetailsView ItemsSource="{x:Bind games}">
+                    <controls:MasterDetailsView.ItemTemplate>
+                        <DataTemplate x:DataType="data:Game">
+                            <TextBlock Text="{x:Bind GameName}"/>
+                        </DataTemplate>
+                    </controls:MasterDetailsView.ItemTemplate>
+                </controls:MasterDetailsView>
             </muxc:NavigationView.MenuItems>
             <Frame Name="ContentFrame" Margin="20,20,0,0"/>
         </muxc:NavigationView>
+        <Button Content="Re" Click="Button_Click"/>
     </Grid>
 </Page>
