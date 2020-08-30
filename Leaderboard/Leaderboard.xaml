@@ -17,26 +17,29 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="TestBox"/>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock x:Name="GameName" FontSize="40" />
+            <TextBlock x:Name="GameType" FontSize="30" HorizontalAlignment="Right"/>
+        </StackPanel>
 
-        <!--<controls:DataGrid AutoGenerateColumns="False" ItemsSource="{x:Bind PlayerStats}" Grid.Row="1" ColumnHeaderHeight="30" CanUserReorderColumns="True">
+        <controls:DataGrid AutoGenerateColumns="False" ItemsSource="{x:Bind playerStats}" Grid.Row="1" ColumnHeaderHeight="30" CanUserReorderColumns="True" Margin="12">
             <controls:DataGrid.Columns>
-                <controls:DataGridTemplateColumn Header="Player" Width="*" >
-                    <controls:DataGridTemplateColumn.CellEditingTemplate>
+                <controls:DataGridTemplateColumn Header="Player" Width="*">
+                    <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate x:DataType="data:PlayerStat">
-                            <TextBox Text="{x:Bind PlayerName}" BorderThickness="0"/>
+                            <TextBlock Text="{x:Bind PlayerName}"/>
                         </DataTemplate>
-                    </controls:DataGridTemplateColumn.CellEditingTemplate>
-                </controls:DataGridTemplateColumn>
+                    </controls:DataGridTemplateColumn.CellTemplate>
+                 </controls:DataGridTemplateColumn>
                 <controls:DataGridTemplateColumn Header="Score" Width="*">
                     <controls:DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate x:DataType="data:PlayerStat">
-                            <muxc:NumberBox Value="{x:Bind PlayerScore}" BorderBrush="Green"/>
+                            <TextBox Text="{x:Bind PlayerScore, Mode=TwoWay}" BorderThickness="0"/>
                         </DataTemplate>
                     </controls:DataGridTemplateColumn.CellEditingTemplate>
                 </controls:DataGridTemplateColumn>
             </controls:DataGrid.Columns>
-        </controls:DataGrid>-->
+        </controls:DataGrid>
 
 
 

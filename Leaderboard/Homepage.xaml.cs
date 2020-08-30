@@ -32,24 +32,10 @@ namespace Leaderboard
         public Homepage()
         {
             this.InitializeComponent();
+            PlayerStats = PlayerStatList.GetPlayerStats();
             //UpdateEvent updateEvent = new UpdateEvent(this);
             //Profile.GetInstance().AddEvent(updateEvent);
             //Profile.GetInstance().ReadProfile();
-            games = Profile.GetInstance().GetGamesList();
-            if(games == null)
-            {
-                TestBlock.Text = "No Games";
-            }
-            else
-            {
-                Game TestGame;
-                for (int i = 0; i < games.Count; i++)
-                {
-                    TestGame = games[i];
-                    TestBlock.Text += TestGame.ToString();
-                }
-            }
-            
         }
 
         private void InputGame_Click(object sender, RoutedEventArgs e)
@@ -63,23 +49,31 @@ namespace Leaderboard
             GameName = NameInput.Text;
             Type = GameType.SelectedItem.ToString();
             Num = NumInput.Value;
-            CreateNewGame();
-            InputGame.Visibility = Visibility.Visible;
-            GameDetPanel.Visibility = Visibility.Collapsed;
-            this.Frame.Navigate(typeof(Homepage));
+            CreatePlayerStats();
+            InputPlayers();
+            //this.Frame.Navigate(typeof(Homepage));
             //this.Frame.Navigate(typeof(Leaderboard));
         }
 
-        private void CreateNewGame()
+        private void CreatePlayerStats()
         {
-
-            PlayerStats = PlayerStatList.GetPlayerStats();
             for (int i = 0; i < Num; i++)
             {
                 PlayerStats.Add(new PlayerStat { PlayerName = "Enter name", PlayerScore = 0 });
-            }
-            Game game = new Game() { id = Profile.id,GameName = GameName, GameType = Type, NumPlayers = Num, PlayerStatList = PlayerStats  } ;
+            }           
+        }
+
+        private async void InputPlayers()
+        {
+            ContentDialogResult result = await NamesDialog.ShowAsync();
+        }
+
+        private void NamesDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            Game game = new Game() { id = Guid.NewGuid(),GameName = GameName, GameType = Type, NumPlayers = Num, PlayerStatList = PlayerStats  } ;
             Profile.GetInstance().AddGame(game);
+            InputGame.Visibility = Visibility.Visible;
+            GameDetPanel.Visibility = Visibility.Collapsed;
         }
 
         public void UpdateGames(ObservableCollection<Game> games)

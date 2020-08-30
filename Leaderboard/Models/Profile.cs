@@ -14,7 +14,6 @@ namespace Leaderboard.Models
         private ObservableCollection<Game> GamesList = null;
         ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
         StorageFolder roamingFolder = ApplicationData.Current.RoamingFolder;
-        public static int id = 0;
         List<UpdateEvent> events;
         string fileName = "games.txt";
 

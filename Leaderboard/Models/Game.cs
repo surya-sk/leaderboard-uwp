@@ -10,7 +10,7 @@ namespace Leaderboard.Models
     [System.Serializable]
     public class Game
     {
-        public int id { get; set; }
+        public Guid id { get; set; }
         public string GameName { get; set; }
         public string GameType { get; set; }
         public double NumPlayers { get; set; }

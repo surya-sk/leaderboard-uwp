@@ -35,6 +35,16 @@
             </StackPanel>
             <TextBlock x:Name="TestBlock"/>
         </StackPanel>
-        
+
+        <ContentDialog Title="Enter Player Names" x:Name="NamesDialog" PrimaryButtonText="Save" PrimaryButtonClick="NamesDialog_PrimaryButtonClick" CloseButtonText="Cancel">
+            <ListView ItemsSource="{x:Bind PlayerStats}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="data:PlayerStat">
+                        <TextBox Text="{x:Bind PlayerName, Mode=TwoWay}" Width="250"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ContentDialog>
+
     </Grid>
 </Page>
