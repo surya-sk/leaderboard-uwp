@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Leaderboard.Models
 {
     [System.Serializable]
-    class Game
+    public class Game
     {
         public int id { get; set; }
         public string GameName { get; set; }

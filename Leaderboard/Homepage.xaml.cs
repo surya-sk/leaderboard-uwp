@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,7 +23,7 @@ namespace Leaderboard
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Homepage : Page
+    public sealed partial class Homepage : Page, IGamesUpdateable
     {
         string GameName, Type;
         double Num;
@@ -31,7 +32,9 @@ namespace Leaderboard
         public Homepage()
         {
             this.InitializeComponent();
-            Profile.GetInstance().ReadProfile();
+            //UpdateEvent updateEvent = new UpdateEvent(this);
+            //Profile.GetInstance().AddEvent(updateEvent);
+            //Profile.GetInstance().ReadProfile();
             games = Profile.GetInstance().GetGamesList();
             if(games == null)
             {
@@ -69,27 +72,20 @@ namespace Leaderboard
 
         private void CreateNewGame()
         {
+
             PlayerStats = PlayerStatList.GetPlayerStats();
             for (int i = 0; i < Num; i++)
             {
                 PlayerStats.Add(new PlayerStat { PlayerName = "Enter name", PlayerScore = 0 });
             }
-            TestBlock.Text += Num.ToString();
-            Profile.id++;
             Game game = new Game() { id = Profile.id,GameName = GameName, GameType = Type, NumPlayers = Num, PlayerStatList = PlayerStats  } ;
-            if (games == null)
-            {
-                games = new ObservableCollection<Game>();
-                games.Add(game);
-                Profile.GetInstance().SaveSettings(games);
-                Profile.GetInstance().WriteProfile();
-            }
-            else
-            {
-                games.Add(game);
-                Profile.GetInstance().SaveSettings(games);
-                Profile.GetInstance().WriteProfile();
-            }
+            Profile.GetInstance().AddGame(game);
+        }
+
+        public void UpdateGames(ObservableCollection<Game> games)
+        {
+            this.games = games;
+            Debug.WriteLine("Homepage" + games.Count);
         }
     }
 }

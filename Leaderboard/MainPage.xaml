@@ -9,7 +9,8 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:data="using:Leaderboard.Models"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Loaded="Page_Loaded">
 
     <Grid>
         <Grid.RowDefinitions>

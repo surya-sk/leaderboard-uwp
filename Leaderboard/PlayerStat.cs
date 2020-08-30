@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Leaderboard
 {
-    class PlayerStat
+    public class PlayerStat
     {
         public string PlayerName { get; set; }
         public double PlayerScore { get; set; }

@@ -122,6 +122,7 @@
     <Compile Include="Homepage.xaml.cs">
       <DependentUpon>Homepage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IGamesUpdateable.cs" />
     <Compile Include="Leaderboard.xaml.cs">
       <DependentUpon>Leaderboard.xaml</DependentUpon>
     </Compile>
@@ -135,6 +136,7 @@
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

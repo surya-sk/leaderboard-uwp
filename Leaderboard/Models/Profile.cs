@@ -3,6 +3,8 @@ using Windows.Storage;
 using Newtonsoft.Json;
 using System;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Leaderboard.Models
 {
@@ -13,11 +15,12 @@ namespace Leaderboard.Models
         ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
         StorageFolder roamingFolder = ApplicationData.Current.RoamingFolder;
         public static int id = 0;
+        List<UpdateEvent> events;
         string fileName = "games.txt";
 
         private Profile()
         {
-
+            events = new List<UpdateEvent>();
         }
 
         public static Profile GetInstance()
@@ -54,6 +57,7 @@ namespace Leaderboard.Models
                 StorageFile storageFile = await roamingFolder.GetFileAsync(fileName);
                 string json = await FileIO.ReadTextAsync(storageFile);
                 GamesList = JsonConvert.DeserializeObject<ObservableCollection<Game>>(json);
+                FireEvents();
             }
             catch
             {
@@ -65,6 +69,32 @@ namespace Leaderboard.Models
         public ObservableCollection<Game> GetGamesList()
         {
             return GamesList;
+        }
+
+        public void AddEvent(UpdateEvent updateEvent)
+        {
+            events.Add(updateEvent);
+        }
+        
+        private void FireEvents()
+        {
+            for(int i =0; i< events.Count; i++)
+            {
+                events[i].OnEventChanged(GamesList);
+            }
+            Debug.WriteLine("events fired " + events.Count);
+        }
+
+        public void ClearEvents()
+        {
+            events.Clear();
+        }
+
+        public void AddGame(Game game)
+        {
+            GamesList.Add(game);
+            WriteProfile();
+            FireEvents();
         }
     }
 }

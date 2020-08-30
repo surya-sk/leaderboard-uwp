@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Leaderboard.Models;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -22,16 +23,19 @@ namespace Leaderboard
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage : Page, IGamesUpdateable
     {
-        private Profile profile = Profile.GetInstance();
         private ObservableCollection<Game> games;
+  
         public MainPage()
         {
-            profile.ReadProfile();
-            games = profile.GetGamesList();
+            games = new ObservableCollection<Game>();
+            UpdateEvent UpdateEvent = new UpdateEvent(this);
+            Profile.GetInstance().ClearEvents();
+            Profile.GetInstance().AddEvent(UpdateEvent);
+            Profile.GetInstance().ReadProfile();
+            //games = profile.GetGamesList();
             this.InitializeComponent();
-            ContentFrame.Navigate(typeof(Homepage));
         }
 
         private void HomeButton_PointerPressed(object sender, PointerRoutedEventArgs e)
@@ -66,6 +70,20 @@ namespace Leaderboard
         {
             NavigationViewItem SelectedItem = args.InvokedItem as NavigationViewItem;
             ContentFrame.Navigate(typeof(Leaderboard), SelectedItem.Tag);
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            //games = profile.GetGamesList();
+            //Debug.WriteLine("On load" + games.Count);
+            ContentFrame.Navigate(typeof(Homepage));
+            // UpdateEvent.OnEventChanged(games);
+        }
+
+        public void UpdateGames(ObservableCollection<Game> games)
+        {
+            this.games = games;
+            Debug.WriteLine("Mainpage" + games.Count);
         }
     }
 }
