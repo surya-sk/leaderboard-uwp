@@ -17,12 +17,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Vertical" Margin="0,0,0,40">
-            <TextBlock x:Name="GameTitle" FontSize="50"/>
-            <TextBlock x:Name="Type" FontSize="18"/>
-            <TextBlock x:Name="TestBox" />
-        </StackPanel>
-
+        <TextBlock x:Name="TestBox"/>
 
         <!--<controls:DataGrid AutoGenerateColumns="False" ItemsSource="{x:Bind PlayerStats}" Grid.Row="1" ColumnHeaderHeight="30" CanUserReorderColumns="True">
             <controls:DataGrid.Columns>

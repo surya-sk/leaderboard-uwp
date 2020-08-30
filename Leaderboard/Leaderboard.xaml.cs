@@ -29,7 +29,13 @@ namespace Leaderboard
             this.InitializeComponent();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            TestBox.Text = "hi" + e.Parameter.ToString();
+            
 
-        
+            base.OnNavigatedTo(e);
+        }
+
     }
 }
