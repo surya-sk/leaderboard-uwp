@@ -57,6 +57,7 @@ namespace Leaderboard
         private void NavView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
         {
             NavigationViewItem SelectedItem = args.InvokedItem as NavigationViewItem;
+            SelectedItem.IsSelected = true;
             ContentFrame.Navigate(typeof(Leaderboard), SelectedItem.Tag);
         }
 

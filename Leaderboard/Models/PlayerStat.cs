@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Leaderboard
+namespace Leaderboard.Models
 {
     public class PlayerStat
     {

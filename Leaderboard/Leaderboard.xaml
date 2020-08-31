@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    xmlns:data="using:Leaderboard"
+    xmlns:data="using:Leaderboard.Models"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Grid>
@@ -18,40 +18,44 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid>
+        <Grid Margin="20,0,0,20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock x:Name="GameName" FontSize="40" />
-             <TextBlock x:Name="GameType" FontSize="30" HorizontalAlignment="Right" Grid.Column="1"/>
         </Grid>
 
-        <Grid Grid.Row="1" Margin="20,0,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <ListView ItemsSource="{x:Bind playerStats}">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="data:PlayerStat">
-                        <TextBlock Text="{x:Bind PlayerName}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <ListView ItemsSource="{x:Bind playerStats}" Grid.Column="1">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="data:PlayerStat">
-                        <TextBox Text="{x:Bind PlayerScore, Mode=TwoWay}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
+
+        <ListView ItemsSource="{x:Bind playerStats}" Grid.Row="1" Margin="20,0,0,20">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="data:PlayerStat">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{x:Bind PlayerName}" />
+                        <TextBox Text="{x:Bind PlayerScore, Mode=TwoWay}" Grid.Column="1"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
 
         <CommandBar Grid.Row="2">
             <AppBarButton x:Name="HomeButton" Label="Home" Icon="Home" Click="HomeButton_Click"/>
             <AppBarButton x:Name="SaveButton" Label="Save" Icon="Save" Click="SaveButton_Click"/>
-            <AppBarButton x:Name="SettingsButton" Label="Settings" Icon="Setting" Click="SettingsButton_Click"/>
+            <AppBarButton x:Name="DeleteButton" Label="Delete" Icon="Delete" Click="DeleteButton_Click"/>
+
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="SettingsButton" Label="Settings" Icon="Setting" Click="SettingsButton_Click"/>
+                <AppBarButton x:Name="HelpButton" Label="Help" Icon="Help" Click="HelpButton_Click"/>
+            </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>
 </Page>

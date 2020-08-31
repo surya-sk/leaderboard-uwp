@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    xmlns:data="using:Leaderboard"
+    xmlns:data="using:Leaderboard.Models"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
@@ -18,7 +18,9 @@
         </Grid.RowDefinitions>
         
         <StackPanel x:Name="HomePanel" Orientation="Vertical" Spacing="20" Margin="20,0,0,0">
-            <TextBlock Text="Leaderboards" FontSize="56"/>
+            <TextBlock Text="Leaderboard" FontSize="56"/>
+            <TextBlock Text="Welcome to Leaderboard- A Board Game Companion. Click 'Add Game' below to add a new game." TextWrapping="Wrap"/>
+            <TextBlock Text="The games you've added will appear in the navigtion bar. Press the hamburger menu to access it if the windows width is small." TextWrapping="Wrap"/>
             <Button x:Name="InputGame" Click="InputGame_Click">
                 <RelativePanel>
                     <FontIcon x:Name="AddIcon" Glyph="&#xE710;"/>
@@ -26,7 +28,6 @@
                 </RelativePanel>
             </Button>
             <StackPanel x:Name="GameDetPanel" Orientation="Vertical" Visibility="Collapsed" Spacing="30">
-
                 <TextBox x:Name="NameInput" Header="Enter Game Name" Width="200" HorizontalAlignment="Left"/>
                 <muxc:RadioButtons x:Name="GameType" Header="Game Type" FontSize="28" MaxColumns="2" >
                     <x:String>Leaderboard</x:String>
@@ -39,7 +40,7 @@
                 <Button x:Name="CreateGameButton" Content="Submit" Click="CreateGameButton_Click"/>
                 <TextBlock x:Name="TestText"/>
             </StackPanel>
-            <TextBlock x:Name="TestBlock"/>
+            <TextBlock x:Name="GameDeleted"/>
         </StackPanel>
 
         <ContentDialog Title="Enter Player Names" x:Name="NamesDialog" PrimaryButtonText="Save" PrimaryButtonClick="NamesDialog_PrimaryButtonClick" CloseButtonText="Cancel">
@@ -54,6 +55,7 @@
 
         <CommandBar Grid.Row="1">
             <AppBarButton x:Name="SettingsButton" Label="Settings" Icon="Setting" Click="SettingsButton_Click"/>
+            <AppBarButton x:Name="HelpButton" Label="Help" Icon="Help" Click="HelpButton_Click"/>
         </CommandBar>
     </Grid>
 </Page>

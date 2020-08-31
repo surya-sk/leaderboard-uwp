@@ -28,6 +28,7 @@ namespace Leaderboard
         private ObservableCollection<PlayerStat> playerStats;
         private ObservableCollection<Game> games;
         private Game game;
+        Guid guid;
         public Leaderboard()
         {
             games = Profile.GetInstance().GetGamesList();
@@ -36,7 +37,7 @@ namespace Leaderboard
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Guid guid = (Guid)e.Parameter;
+            guid = (Guid)e.Parameter;
             for(int i=0;i<games.Count;i++)
             {
                 if(games[i].id == guid)
@@ -44,7 +45,6 @@ namespace Leaderboard
                     game = games[i];
                     playerStats = game.PlayerStatList;
                     GameName.Text = game.GameName;
-                    GameType.Text = game.GameType;
                 }
             }
             base.OnNavigatedTo(e);
@@ -62,7 +62,45 @@ namespace Leaderboard
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            game.PlayerStatList = playerStats;
+            for(int i=0; i<games.Count;i++)
+            {
+                if(games[i].id == guid)
+                {
+                    games[i] = game;
+                }
+            }
+            Profile.GetInstance().SaveSettings(games);
+            Profile.GetInstance().WriteProfile();
+        }
 
+        private async void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            ContentDialog deleteDialog = new ContentDialog()
+            {
+                Title="Delete game permanently?",
+                Content="If you delete this game, you cannot recover it. Are you sure?",
+                PrimaryButtonText="Delete",
+                CloseButtonText="Cancel"
+            };
+            ContentDialogResult contentDialogResult = await deleteDialog.ShowAsync();
+            if(contentDialogResult == ContentDialogResult.Primary)
+            {
+                DeleteGame();
+                this.Frame.Navigate(typeof(Homepage), "deleted");
+            }
+        }
+
+        private void DeleteGame()
+        {
+            games.Remove(game);
+            Profile.GetInstance().SaveSettings(games);
+            Profile.GetInstance().WriteProfile();
+        }
+
+        private void HelpButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(HelpPage));
         }
     }
 }

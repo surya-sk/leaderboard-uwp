@@ -91,6 +91,7 @@
 
         <CommandBar Grid.Row="2">
             <AppBarButton x:Name="HomeButton" Label="Home" Icon="Home" Click="HomeButton_Click"/>
+            <AppBarButton x:Name="HelpButton" Label="Help" Icon="Help" Click="HelpButton_Click"/>
         </CommandBar>
     </Grid>
 </Page>

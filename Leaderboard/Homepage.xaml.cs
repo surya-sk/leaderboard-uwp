@@ -82,10 +82,25 @@ namespace Leaderboard
             this.Frame.Navigate(typeof(Settings));
         }
 
+        private void HelpButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(HelpPage));
+        }
+
         public void UpdateGames(ObservableCollection<Game> games)
         {
             this.games = games;
             Debug.WriteLine("Homepage" + games.Count);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            string result = (string)e.Parameter;
+            if(result == "deleted")
+            {
+                GameDeleted.Text = "Game successfully deleted";
+            }
+            base.OnNavigatedTo(e);
         }
     }
 }

@@ -17,11 +17,7 @@
         <muxc:NavigationView Name="NavView" PaneTitle="Games" PaneDisplayMode="Auto" ItemInvoked="NavView_ItemInvoked" IsSettingsVisible="False" MenuItemsSource="{x:Bind games}">
             <muxc:NavigationView.MenuItemTemplate>
                 <DataTemplate x:DataType="data:Game">
-                    <NavigationViewItem Tag="{x:Bind id}" Content="{x:Bind GameName}">
-                        <NavigationViewItem.Icon>
-                            <FontIcon Glyph="&#xE768;"/>
-                        </NavigationViewItem.Icon>
-                    </NavigationViewItem>
+                    <NavigationViewItem Tag="{x:Bind id}" Content="{x:Bind GameName}" Icon="Play"/>
                 </DataTemplate>
             </muxc:NavigationView.MenuItemTemplate>
             <Frame Name="ContentFrame" Margin="0,20,0,0"/>
