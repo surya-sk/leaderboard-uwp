@@ -9,24 +9,58 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-       
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="VisualStateMobile">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RelatedPanel.(Grid.Column)" Value="0"/>
+                        <Setter Target="RelatedPanel.(Grid.Row)" Value="1"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VisualStateDesktop">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RelatedPanel.(Grid.Column)" Value="1"/>
+                        <Setter Target="RelatedPanel.(Grid.Row)" Value="0"/>
+                        <Setter Target="RelatedPanel.HorizontalAlignment" Value="Right"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
-        <TextBlock Text="Settings" FontSize="56" Margin="0,20,0,20"/>
+        <TextBlock Text="Settings" FontSize="56" Margin="20,20,0,20"/>
         
         
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Row="1">
-            <StackPanel Orientation="Vertical" Spacing="30">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="20,0,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
 
-                <ToggleSwitch Header="Theme (restart required)" OnContent="Light" OffContent="Dark" Toggled="ToggleSwitch_Toggled" Loaded="ToggleSwitch_Loaded" />
-                <StackPanel Spacing="10">
-                    <TextBlock Text="About" FontSize="40"/>
-                    <TextBlock Text="Leaderboard is a boardgame companion built to keep track of player scores." TextWrapping="WrapWholeWords"/>
-                    <TextBlock Text="This project is and always will be free and open-source." TextWrapping="WrapWholeWords"/>
-                    <TextBlock TextWrapping="Wrap" Margin="0,20,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <StackPanel Orientation="Vertical" Margin="0,20,20,0">
+                    <ToggleSwitch Header="Theme (restart required)" OnContent="Light" OffContent="Dark" Toggled="ToggleSwitch_Toggled" Loaded="ToggleSwitch_Loaded" />
+                    <StackPanel Margin="0,20,0,0">
+                        <TextBlock Text="About" FontSize="40" Margin="0,20,0,0"/>
+                        <TextBlock Text="Leaderboard is a boardgame companion built to keep track of player scores." TextWrapping="WrapWholeWords"/>
+                        <TextBlock Text="This project is and always will be free and open-source." TextWrapping="WrapWholeWords"/>
+                        <TextBlock TextWrapping="Wrap" Margin="0,20,0,0">
                     <Hyperlink NavigateUri="https://github.com/surya-sk/leaderboard-windows">
                         <Run Text="Github repository" />
                     </Hyperlink>
@@ -36,23 +70,27 @@
                         <Run Text="Github profile" />
                     </Hyperlink>
                         </TextBlock>
-                    <TextBlock TextWrapping="Wrap" Margin="0,20,0,0">
+                        <TextBlock TextWrapping="Wrap" Margin="0,20,0,0">
                     <Hyperlink x:Name="MailLink" NavigateUri="mailto:surya.sk05@outlook.com">
                         <Run Text="Contact developer" />
                     </Hyperlink>
-                    </TextBlock>
+                        </TextBlock>
+                    </StackPanel>
                 </StackPanel>
-
-                <StackPanel Spacing="10">
+                
+                <StackPanel x:Name="RelatedPanel" Margin="0,20,0,0">
                     <TextBlock Text="Related Settings" FontSize="40"/>
-                    <TextBlock TextWrapping="Wrap">
+                    <TextBlock TextWrapping="Wrap" Margin="0,20,0,0">
                         <Hyperlink NavigateUri="ms-settings:colors">
                             <Run Text="Windows colour settings"/>
                         </Hyperlink>
                     </TextBlock>
                 </StackPanel>
-                
-            </StackPanel>
+            </Grid>
         </ScrollViewer>
+
+        <CommandBar Grid.Row="2">
+            <AppBarButton x:Name="HomeButton" Label="Home" Icon="Home" Click="HomeButton_Click"/>
+        </CommandBar>
     </Grid>
 </Page>

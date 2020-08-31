@@ -13,10 +13,7 @@
     Loaded="Page_Loaded">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        
         <muxc:NavigationView Name="NavView" PaneDisplayMode="Auto" ItemInvoked="NavView_ItemInvoked" PaneTitle="Games" IsSettingsVisible="False" MenuItemsSource="{x:Bind games}">
             <muxc:NavigationView.MenuItemTemplate>
                 <DataTemplate x:DataType="data:Game">
@@ -27,12 +24,9 @@
                     </NavigationViewItem>
                 </DataTemplate>
             </muxc:NavigationView.MenuItemTemplate>
-            <Frame Name="ContentFrame" Margin="20,20,0,0"/>
+            <Frame Name="ContentFrame" Margin="0,20,0,0"/>
         </muxc:NavigationView>
         <Button Content="Re" Click="Button_Click"/>
-        <CommandBar Grid.Row="1">
-            <AppBarButton x:Name="HomeButton" Label="Home" Icon="Home" Click="HomeButton_Click"/>
-            <AppBarButton x:Name="SettingsButton" Label="Settings" Icon="Setting" Click="SettingsButton_Click"/>
-        </CommandBar>
+        
     </Grid>
 </Page>

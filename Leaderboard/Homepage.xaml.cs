@@ -76,6 +76,17 @@ namespace Leaderboard
             GameDetPanel.Visibility = Visibility.Collapsed;
         }
 
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Settings));
+        }
+
+        private void RefreshPage_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
         public void UpdateGames(ObservableCollection<Game> games)
         {
             this.games = games;

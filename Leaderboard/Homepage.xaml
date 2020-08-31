@@ -11,7 +11,13 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <StackPanel x:Name="HomePanel" Orientation="Vertical" Spacing="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel x:Name="HomePanel" Orientation="Vertical" Spacing="20" Margin="20,0,0,0">
             <TextBlock Text="Leaderboards" FontSize="56"/>
             <Button x:Name="InputGame" Click="InputGame_Click">
                 <RelativePanel>
@@ -46,5 +52,9 @@
             </ListView>
         </ContentDialog>
 
+        <CommandBar Grid.Row="1">
+            <AppBarButton x:Name="RefreshPage" Label="Refresh" Icon="Refresh" Click="RefreshPage_Click"/>
+            <AppBarButton x:Name="SettingsButton" Label="Settings" Icon="Setting" Click="SettingsButton_Click"/>
+        </CommandBar>
     </Grid>
 </Page>

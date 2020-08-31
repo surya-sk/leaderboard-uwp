@@ -27,6 +27,7 @@ namespace Leaderboard
     {
         private ObservableCollection<PlayerStat> playerStats;
         private ObservableCollection<Game> games;
+        private Game game;
         public Leaderboard()
         {
             games = Profile.GetInstance().GetGamesList();
@@ -40,13 +41,28 @@ namespace Leaderboard
             {
                 if(games[i].id == guid)
                 {
-                    playerStats = games[i].PlayerStatList;
-                    GameName.Text = games[i].GameName;
-                    GameType.Text = games[i].GameType;
+                    game = games[i];
+                    playerStats = game.PlayerStatList;
+                    GameName.Text = game.GameName;
+                    GameType.Text = game.GameType;
                 }
             }
             base.OnNavigatedTo(e);
         }
 
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Homepage));
+        }
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Settings));
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

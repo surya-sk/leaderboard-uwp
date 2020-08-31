@@ -38,11 +38,6 @@ namespace Leaderboard
             this.InitializeComponent();
         }
 
-        private void HomeButton_PointerPressed(object sender, PointerRoutedEventArgs e)
-        {
-            ContentFrame.Navigate(typeof(Homepage));
-            
-        }
 
         private void NavigationViewItem_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
@@ -51,19 +46,12 @@ namespace Leaderboard
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MainPage));
+            RefreshPage();
         }
 
-        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        public void RefreshPage()
         {
-            NavView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Auto;
-            ContentFrame.Navigate(typeof(Homepage));
-        }
-
-        private void SettingsButton_Click(object sender, RoutedEventArgs e)
-        {
-            ContentFrame.Navigate(typeof(Settings));
-            NavView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.LeftCompact;
+            Frame.Navigate(typeof(MainPage));
         }
 
         private void NavView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)

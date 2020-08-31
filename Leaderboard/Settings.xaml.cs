@@ -38,6 +38,10 @@ namespace Leaderboard
             ((ToggleSwitch)sender).IsOn = App.Current.RequestedTheme == ApplicationTheme.Light;
         }
 
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Homepage));
+        }
     }
         
 }

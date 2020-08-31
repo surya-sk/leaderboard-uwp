@@ -15,33 +15,43 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <TextBlock x:Name="GameName" FontSize="40" />
-            <TextBlock x:Name="GameType" FontSize="30" HorizontalAlignment="Right"/>
-        </StackPanel>
+             <TextBlock x:Name="GameType" FontSize="30" HorizontalAlignment="Right" Grid.Column="1"/>
+        </Grid>
 
-        <controls:DataGrid AutoGenerateColumns="False" ItemsSource="{x:Bind playerStats}" Grid.Row="1" ColumnHeaderHeight="30" CanUserReorderColumns="True" Margin="12">
-            <controls:DataGrid.Columns>
-                <controls:DataGridTemplateColumn Header="Player" Width="*">
-                    <controls:DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate x:DataType="data:PlayerStat">
-                            <TextBlock Text="{x:Bind PlayerName}"/>
-                        </DataTemplate>
-                    </controls:DataGridTemplateColumn.CellTemplate>
-                 </controls:DataGridTemplateColumn>
-                <controls:DataGridTemplateColumn Header="Score" Width="*">
-                    <controls:DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate x:DataType="data:PlayerStat">
-                            <TextBox Text="{x:Bind PlayerScore, Mode=TwoWay}" BorderThickness="0"/>
-                        </DataTemplate>
-                    </controls:DataGridTemplateColumn.CellEditingTemplate>
-                </controls:DataGridTemplateColumn>
-            </controls:DataGrid.Columns>
-        </controls:DataGrid>
+        <Grid Grid.Row="1" Margin="20,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ListView ItemsSource="{x:Bind playerStats}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="data:PlayerStat">
+                        <TextBlock Text="{x:Bind PlayerName}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView ItemsSource="{x:Bind playerStats}" Grid.Column="1">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="data:PlayerStat">
+                        <TextBox Text="{x:Bind PlayerScore, Mode=TwoWay}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
 
-
-
+        <CommandBar Grid.Row="2">
+            <AppBarButton x:Name="HomeButton" Label="Home" Icon="Home" Click="HomeButton_Click"/>
+            <AppBarButton x:Name="SaveButton" Label="Save" Icon="Save" Click="SaveButton_Click"/>
+            <AppBarButton x:Name="SettingsButton" Label="Settings" Icon="Setting" Click="SettingsButton_Click"/>
+        </CommandBar>
     </Grid>
 </Page>
