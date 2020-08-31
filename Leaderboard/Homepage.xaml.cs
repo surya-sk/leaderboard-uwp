@@ -82,11 +82,6 @@ namespace Leaderboard
             this.Frame.Navigate(typeof(Settings));
         }
 
-        private void RefreshPage_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         public void UpdateGames(ObservableCollection<Game> games)
         {
             this.games = games;
