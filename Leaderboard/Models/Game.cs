@@ -19,7 +19,7 @@ namespace Leaderboard.Models
         override
         public string ToString()
         {
-            return GameName + " " + GameType + " " + NumPlayers + " " + PlayerStatList;
+            return id+ " "+ GameName + " " + GameType + " " + NumPlayers + " " + PlayerStatList;
         }
     }
 

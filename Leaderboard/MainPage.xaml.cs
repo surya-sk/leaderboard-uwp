@@ -38,12 +38,6 @@ namespace Leaderboard
             this.InitializeComponent();
         }
 
-
-        private void NavigationViewItem_PointerPressed(object sender, PointerRoutedEventArgs e)
-        {
-            ContentFrame.Navigate(typeof(Leaderboard));
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             RefreshPage();
@@ -56,9 +50,9 @@ namespace Leaderboard
 
         private void NavView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
         {
-            NavigationViewItem SelectedItem = args.InvokedItem as NavigationViewItem;
-            SelectedItem.IsSelected = true;
-            ContentFrame.Navigate(typeof(Leaderboard), SelectedItem.Tag);
+            string id = args.InvokedItemContainer.Tag.ToString();
+            Guid guid = new Guid(id);
+            ContentFrame.Navigate(typeof(Leaderboard), guid);
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -74,5 +68,13 @@ namespace Leaderboard
             this.games = games;
             Debug.WriteLine("Mainpage" + games.Count);
         }
+
+        //private void NavView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
+        //{
+        //    string id = args.SelectedItemContainer.Tag.ToString();
+        //    Guid guid = new Guid(id);
+        //    Debug.WriteLine(id);
+        //    ContentFrame.Navigate(typeof(Leaderboard), guid);
+        //}
     }
 }

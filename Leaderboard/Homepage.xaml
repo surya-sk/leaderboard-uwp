@@ -28,14 +28,14 @@
                 </RelativePanel>
             </Button>
             <StackPanel x:Name="GameDetPanel" Orientation="Vertical" Visibility="Collapsed" Spacing="30">
-                <TextBox x:Name="NameInput" Header="Enter Game Name" Width="200" HorizontalAlignment="Left"/>
+                <TextBox x:Name="NameInput" PlaceholderText="Enter Game Name" Width="200" HorizontalAlignment="Left"/>
                 <muxc:RadioButtons x:Name="GameType" Header="Game Type" FontSize="28" MaxColumns="2" >
                     <x:String>Leaderboard</x:String>
                     <x:String>Eliminator</x:String>
                 </muxc:RadioButtons>
                 <StackPanel Orientation="Horizontal" Spacing="30">
                     <TextBlock Text="Number of players: " FontSize="28"/>
-                    <muxc:NumberBox x:Name="NumInput" />
+                    <TextBox x:Name="NumInput" BeforeTextChanging="NumInput_BeforeTextChanging" />
                 </StackPanel>
                 <Button x:Name="CreateGameButton" Content="Submit" Click="CreateGameButton_Click"/>
                 <TextBlock x:Name="TestText"/>
@@ -47,7 +47,7 @@
             <ListView ItemsSource="{x:Bind PlayerStats}">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="data:PlayerStat">
-                        <TextBox Text="{x:Bind PlayerName, Mode=TwoWay}" Width="250"/>
+                        <TextBox PlaceholderText="Enter name" Text="{x:Bind PlayerName, Mode=TwoWay}" Width="250"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

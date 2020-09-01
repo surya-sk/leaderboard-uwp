@@ -48,7 +48,8 @@ namespace Leaderboard
         {
             GameName = NameInput.Text;
             Type = GameType.SelectedItem.ToString();
-            Num = NumInput.Value;
+            string temp = NumInput.Text;
+            Num = Convert.ToDouble(temp);
             CreatePlayerStats();
             InputPlayers();
             //this.Frame.Navigate(typeof(Homepage));
@@ -59,7 +60,7 @@ namespace Leaderboard
         {
             for (int i = 0; i < Num; i++)
             {
-                PlayerStats.Add(new PlayerStat { PlayerName = "Enter name", PlayerScore = 0 });
+                PlayerStats.Add(new PlayerStat { PlayerName = "", PlayerScore = 0 });
             }           
         }
 
@@ -92,6 +93,18 @@ namespace Leaderboard
             this.games = games;
             Debug.WriteLine("Homepage" + games.Count);
         }
+
+        private void NumInput_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
+        {
+            foreach (char c in args.NewText)
+            {
+                if (!char.IsDigit(c))
+                {
+                    args.Cancel = true;
+                }
+            }
+        }
+
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
