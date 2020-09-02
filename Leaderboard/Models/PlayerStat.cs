@@ -13,7 +13,7 @@ namespace Leaderboard.Models
         public double PlayerScore { get; set; }
     }
     [System.Serializable]
-    class PlayerStatList
+    public class PlayerStatList
     {
         public static ObservableCollection<PlayerStat> GetPlayerStats()
         {
