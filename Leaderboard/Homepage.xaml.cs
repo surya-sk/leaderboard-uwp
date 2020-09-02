@@ -27,6 +27,7 @@ namespace Leaderboard
     {
         string GameName, Type;
         double Num;
+        int MaxScore;
         private ObservableCollection<PlayerStat> PlayerStats;
         private ObservableCollection<Game> games;
         private ObservableCollection<GameRound> GameRounds;
@@ -52,6 +53,8 @@ namespace Leaderboard
             Type = GameType.SelectedItem.ToString();
             string temp = NumInput.Text;
             Num = Convert.ToDouble(temp);
+            string temp2 = MaxScoreInput.Text;
+            MaxScore = Convert.ToInt16(temp2);
             InputPlayers();
             CreateRoundOne();
             //this.Frame.Navigate(typeof(Homepage));
@@ -61,7 +64,7 @@ namespace Leaderboard
         private void CreateRoundOne()
         {
             CreatePlayerStats();
-            GameRounds.Add(new GameRound { MaxScore = 0, PlayerStats = PlayerStats });
+            GameRounds.Add(new GameRound { RoundName = "Round " + (GameRounds.Count - 1), MaxScore = MaxScore, PlayerStats = PlayerStats });
         }
 
         private void CreatePlayerStats()

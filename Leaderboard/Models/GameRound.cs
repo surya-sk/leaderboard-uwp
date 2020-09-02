@@ -9,6 +9,7 @@ namespace Leaderboard.Models
 {
     public class GameRound
     {
+        public string RoundName { get; set; }
         public int MaxScore { get; set; }
         public ObservableCollection<PlayerStat> PlayerStats { get; set; }
 
