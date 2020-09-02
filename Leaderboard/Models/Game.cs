@@ -10,16 +10,16 @@ namespace Leaderboard.Models
     [System.Serializable]
     public class Game
     {
-        public Guid id { get; set; }
+        public Guid Id { get; set; }
         public string GameName { get; set; }
         public string GameType { get; set; }
         public double NumPlayers { get; set; }
-        public ObservableCollection<PlayerStat> PlayerStatList { get; set; }
+        public ObservableCollection<GameRound> GameRoundsList { get; set; }
 
         override
         public string ToString()
         {
-            return id+ " "+ GameName + " " + GameType + " " + NumPlayers + " " + PlayerStatList;
+            return Id+ " "+ GameName + " " + GameType + " " + NumPlayers + " " + GameRoundsList;
         }
     }
 

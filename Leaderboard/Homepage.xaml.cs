@@ -29,10 +29,12 @@ namespace Leaderboard
         double Num;
         private ObservableCollection<PlayerStat> PlayerStats;
         private ObservableCollection<Game> games;
+        private ObservableCollection<GameRound> GameRounds;
         public Homepage()
         {
             this.InitializeComponent();
             PlayerStats = PlayerStatList.GetPlayerStats();
+            GameRounds = GameRoundsList.GetGameRounds();
             //UpdateEvent updateEvent = new UpdateEvent(this);
             //Profile.GetInstance().AddEvent(updateEvent);
             //Profile.GetInstance().ReadProfile();
@@ -50,10 +52,16 @@ namespace Leaderboard
             Type = GameType.SelectedItem.ToString();
             string temp = NumInput.Text;
             Num = Convert.ToDouble(temp);
-            CreatePlayerStats();
             InputPlayers();
+            CreateRoundOne();
             //this.Frame.Navigate(typeof(Homepage));
             //this.Frame.Navigate(typeof(Leaderboard));
+        }
+
+        private void CreateRoundOne()
+        {
+            CreatePlayerStats();
+            GameRounds.Add(new GameRound { MaxScore = 0, PlayerStats = PlayerStats });
         }
 
         private void CreatePlayerStats()
@@ -71,7 +79,7 @@ namespace Leaderboard
 
         private void NamesDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Game game = new Game() { id = Guid.NewGuid(),GameName = GameName, GameType = Type, NumPlayers = Num, PlayerStatList = PlayerStats  } ;
+            Game game = new Game() { Id = Guid.NewGuid(),GameName = GameName, GameType = Type, NumPlayers = Num, GameRoundsList = GameRounds } ;
             Profile.GetInstance().AddGame(game);
             InputGame.Visibility = Visibility.Visible;
             GameDetPanel.Visibility = Visibility.Collapsed;

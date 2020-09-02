@@ -27,7 +27,9 @@ namespace Leaderboard
     {
         private ObservableCollection<PlayerStat> playerStats;
         private ObservableCollection<Game> games;
+        private ObservableCollection<GameRound> gameRounds;
         private Game game;
+        private GameRound activeRound;
         Guid guid;
         public Leaderboard()
         {
@@ -40,11 +42,13 @@ namespace Leaderboard
             guid = (Guid)e.Parameter;
             for(int i=0;i<games.Count;i++)
             {
-                if(games[i].id == guid)
+                if(games[i].Id == guid)
                 {
                     game = games[i];
-                    playerStats = game.PlayerStatList;
+                    gameRounds = game.GameRoundsList;
+                    activeRound = gameRounds[gameRounds.Count - 1];
                     GameName.Text = game.GameName;
+                    playerStats = activeRound.PlayerStats;
                 }
             }
             base.OnNavigatedTo(e);
@@ -62,10 +66,12 @@ namespace Leaderboard
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            game.PlayerStatList = playerStats;
+            activeRound.PlayerStats = playerStats;
+            gameRounds[gameRounds.Count - 1] = activeRound;
+            game.GameRoundsList = gameRounds;
             for(int i=0; i<games.Count;i++)
             {
-                if(games[i].id == guid)
+                if(games[i].Id == guid)
                 {
                     games[i] = game;
                 }
