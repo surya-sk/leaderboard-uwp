@@ -28,14 +28,14 @@ namespace Leaderboard
         string GameName, Type;
         double Num;
         int MaxScore;
-        private ObservableCollection<PlayerStat> PlayerStats;
         private ObservableCollection<Game> games;
         private ObservableCollection<GameRound> GameRounds;
+        private ObservableCollection<Player> Players;
         public Homepage()
         {
             this.InitializeComponent();
-            PlayerStats = PlayerStatList.GetPlayerStats();
             GameRounds = GameRoundsList.GetGameRounds();
+            Players = PlayerList.GetPlayers();
             //UpdateEvent updateEvent = new UpdateEvent(this);
             //Profile.GetInstance().AddEvent(updateEvent);
             //Profile.GetInstance().ReadProfile();
@@ -55,23 +55,23 @@ namespace Leaderboard
             Num = Convert.ToDouble(temp);
             string temp2 = MaxScoreInput.Text;
             MaxScore = Convert.ToInt16(temp2);
+            CreatePlayerList();
             InputPlayers();
-            CreateRoundOne();
             //this.Frame.Navigate(typeof(Homepage));
             //this.Frame.Navigate(typeof(Leaderboard));
         }
 
         private void CreateRoundOne()
         {
-            CreatePlayerStats();
-            GameRounds.Add(new GameRound { RoundName = "Round " + (GameRounds.Count - 1), MaxScore = MaxScore, PlayerStats = PlayerStats });
+            GameRounds.Add(new GameRound { RoundName = "Round " + (GameRounds.Count + 1), score=0});
         }
 
-        private void CreatePlayerStats()
+        private void CreatePlayerList()
         {
+            CreateRoundOne();
             for (int i = 0; i < Num; i++)
             {
-                PlayerStats.Add(new PlayerStat { PlayerName = "", PlayerScore = 0 });
+                Players.Add(new Player { PlayerName="", GameRounds = GameRounds });
             }           
         }
 
@@ -82,7 +82,7 @@ namespace Leaderboard
 
         private void NamesDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Game game = new Game() { Id = Guid.NewGuid(),GameName = GameName, GameType = Type, NumPlayers = Num, GameRoundsList = GameRounds } ;
+            Game game = new Game() { Id = Guid.NewGuid(),GameName = GameName, GameType = Type, NumPlayers = Num, MaxScore = MaxScore, Players = Players } ;
             Profile.GetInstance().AddGame(game);
             InputGame.Visibility = Visibility.Visible;
             GameDetPanel.Visibility = Visibility.Collapsed;

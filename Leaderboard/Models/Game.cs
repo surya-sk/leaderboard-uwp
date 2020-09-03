@@ -14,12 +14,13 @@ namespace Leaderboard.Models
         public string GameName { get; set; }
         public string GameType { get; set; }
         public double NumPlayers { get; set; }
-        public ObservableCollection<GameRound> GameRoundsList { get; set; }
+        public int MaxScore { get; set; }
+        public ObservableCollection<Player> Players { get; set; }
 
         override
         public string ToString()
         {
-            return Id+ " "+ GameName + " " + GameType + " " + NumPlayers + " " + GameRoundsList;
+            return Id + " " + GameName + " " + GameType + " " + NumPlayers + " ";
         }
     }
 

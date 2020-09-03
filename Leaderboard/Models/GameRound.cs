@@ -10,13 +10,8 @@ namespace Leaderboard.Models
     public class GameRound
     {
         public string RoundName { get; set; }
-        public int MaxScore { get; set; }
-        public ObservableCollection<PlayerStat> PlayerStats { get; set; }
+        public int score { get; set; }
 
-        public override string ToString()
-        {
-            return MaxScore + " " + PlayerStats;
-        }
     }
 
     public class GameRoundsList

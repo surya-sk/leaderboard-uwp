@@ -25,11 +25,9 @@ namespace Leaderboard
     /// </summary>
     public sealed partial class Leaderboard : Page
     {
-        private ObservableCollection<PlayerStat> playerStats;
+        private ObservableCollection<Player> players;
         private ObservableCollection<Game> games;
-        private ObservableCollection<GameRound> gameRounds;
         private Game game;
-        private GameRound activeRound;
         Guid guid;
         public Leaderboard()
         {
@@ -45,10 +43,8 @@ namespace Leaderboard
                 if(games[i].Id == guid)
                 {
                     game = games[i];
-                    gameRounds = game.GameRoundsList;
-                    activeRound = gameRounds[gameRounds.Count - 1];
+                    players = game.Players;
                     GameName.Text = game.GameName;
-                    playerStats = activeRound.PlayerStats;
                 }
             }
             base.OnNavigatedTo(e);
@@ -66,9 +62,7 @@ namespace Leaderboard
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            activeRound.PlayerStats = playerStats;
-            gameRounds[gameRounds.Count - 1] = activeRound;
-            game.GameRoundsList = gameRounds;
+            game.Players = players;
             for(int i=0; i<games.Count;i++)
             {
                 if(games[i].Id == guid)
@@ -107,6 +101,14 @@ namespace Leaderboard
         private void HelpButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(HelpPage));
+        }
+
+        private void AddRound_Click(object sender, RoutedEventArgs e)
+        {
+            for(int i = 0; i < players.Count; i++)
+            {
+                players[i].GameRounds.Add(new GameRound() { RoundName="Round "+(players[i].GameRounds.Count+1), score = 0});
+            }
         }
     }
 }
