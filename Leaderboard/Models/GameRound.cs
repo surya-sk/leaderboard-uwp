@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,12 +9,16 @@ namespace Leaderboard.Models
 {
     public class GameRound
     {
-        public int MaxScore { get; set; }
-        public PlayerStatList PlayerStats { get; set; }
+        public string RoundName { get; set; }
+        public int score { get; set; }
+    }
 
-        public override string ToString()
+    public class GameRoundsList
+    {
+        public static ObservableCollection<GameRound> GetGameRounds()
         {
-            return MaxScore + " " + PlayerStats;
+            var GameRounds = new ObservableCollection<GameRound>();
+            return GameRounds;
         }
     }
 }

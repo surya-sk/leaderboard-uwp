@@ -37,6 +37,10 @@
                     <TextBlock Text="Number of players: " FontSize="28"/>
                     <TextBox x:Name="NumInput" BeforeTextChanging="NumInput_BeforeTextChanging" />
                 </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Enter max score:" FontSize="28"/>
+                    <TextBox x:Name="MaxScoreInput" BeforeTextChanging="NumInput_BeforeTextChanging"/>
+                </StackPanel>
                 <Button x:Name="CreateGameButton" Content="Submit" Click="CreateGameButton_Click"/>
                 <TextBlock x:Name="TestText"/>
             </StackPanel>
@@ -44,10 +48,12 @@
         </StackPanel>
 
         <ContentDialog Title="Enter Player Names" x:Name="NamesDialog" PrimaryButtonText="Save" PrimaryButtonClick="NamesDialog_PrimaryButtonClick" CloseButtonText="Cancel">
-            <ListView ItemsSource="{x:Bind PlayerStats}">
+            <ListView ItemsSource="{x:Bind Players}">
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="data:PlayerStat">
-                        <TextBox PlaceholderText="Enter name" Text="{x:Bind PlayerName, Mode=TwoWay}" Width="250"/>
+                    <DataTemplate x:DataType="data:Player">
+                        <StackPanel>
+                            <TextBox PlaceholderText="Enter name" Text="{x:Bind PlayerName, Mode=TwoWay}" Width="250"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
