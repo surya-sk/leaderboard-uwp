@@ -36,6 +36,10 @@ namespace Leaderboard
             this.InitializeComponent();
             GameRounds = GameRoundsList.GetGameRounds();
             Players = PlayerList.GetPlayers();
+            if(Profile.GetInstance().GetGamesList() == null)
+            {
+                StatusText.Text = "You currently have no games.";
+            }
         }
 
         /// <summary>
