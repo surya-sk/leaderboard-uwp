@@ -21,7 +21,7 @@ using Windows.UI.Xaml.Navigation;
 namespace Leaderboard
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// The Homepage that the user is taken to upon app launch
     /// </summary>
     public sealed partial class Homepage : Page, IGamesUpdateable
     {
@@ -36,17 +36,24 @@ namespace Leaderboard
             this.InitializeComponent();
             GameRounds = GameRoundsList.GetGameRounds();
             Players = PlayerList.GetPlayers();
-            //UpdateEvent updateEvent = new UpdateEvent(this);
-            //Profile.GetInstance().AddEvent(updateEvent);
-            //Profile.GetInstance().ReadProfile();
         }
 
+        /// <summary>
+        /// Hides the add game button after selecting it and shows the details panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InputGame_Click(object sender, RoutedEventArgs e)
         {
             InputGame.Visibility = Visibility.Collapsed;
             GameDetPanel.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Take in values inputted by the user and show the pop-up to enter player names
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CreateGameButton_Click(object sender, RoutedEventArgs e)
         {
             GameName = NameInput.Text;
@@ -61,11 +68,17 @@ namespace Leaderboard
             //this.Frame.Navigate(typeof(Leaderboard));
         }
 
+        /// <summary>
+        /// Creates the first round for each player
+        /// </summary>
         private void CreateRoundOne()
         {
             GameRounds.Add(new GameRound { RoundName = "Round " + (GameRounds.Count + 1), score=0});
         }
 
+        /// <summary>
+        /// Create a list of players based on user input
+        /// </summary>
         private void CreatePlayerList()
         {
             CreateRoundOne();
@@ -75,11 +88,19 @@ namespace Leaderboard
             }           
         }
 
+        /// <summary>
+        /// Shows the pop-up to enter player names
+        /// </summary>
         private async void InputPlayers()
         {
             ContentDialogResult result = await NamesDialog.ShowAsync();
         }
 
+        /// <summary>
+        /// Takes player input from the pop-up and creates the game
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void NamesDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             Game game = new Game() { Id = Guid.NewGuid(),GameName = GameName, GameType = Type, NumPlayers = Num, MaxScore = MaxScore, Players = Players } ;
@@ -105,7 +126,12 @@ namespace Leaderboard
             this.games = games;
             Debug.WriteLine("Homepage" + games.Count);
         }
-
+        
+        /// <summary>
+        /// Prevents letters from being typed into the score box by the user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void NumInput_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
             foreach (char c in args.NewText)

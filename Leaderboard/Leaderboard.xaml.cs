@@ -21,7 +21,7 @@ using System.Diagnostics;
 namespace Leaderboard
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// The page for each of the games.
     /// </summary>
     public sealed partial class Leaderboard : Page
     {
@@ -35,6 +35,10 @@ namespace Leaderboard
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Takes in the guid from the clicked item from the navigation view
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             guid = (Guid)e.Parameter;
@@ -60,6 +64,11 @@ namespace Leaderboard
             this.Frame.Navigate(typeof(Settings));
         }
 
+        /// <summary>
+        /// Saves the current game status 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             game.Players = players;
@@ -74,6 +83,11 @@ namespace Leaderboard
             Profile.GetInstance().WriteProfile();
         }
 
+        /// <summary>
+        /// Deletes the game after warning 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             ContentDialog deleteDialog = new ContentDialog()
@@ -91,6 +105,9 @@ namespace Leaderboard
             }
         }
 
+        /// <summary>
+        /// Deletes a game from the games list and writes it to the file
+        /// </summary>
         private void DeleteGame()
         {
             games.Remove(game);
@@ -103,6 +120,11 @@ namespace Leaderboard
             this.Frame.Navigate(typeof(HelpPage));
         }
 
+        /// <summary>
+        /// Adds a new round to each of the players
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddRound_Click(object sender, RoutedEventArgs e)
         {
             for(int i = 0; i < players.Count; i++)

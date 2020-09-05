@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Leaderboard.Models
 {
+    /// <summary>
+    /// A model for each GameRound that is an object of a Player object
+    /// </summary>
     public class GameRound
     {
         public string RoundName { get; set; }
