@@ -71,10 +71,15 @@ namespace Leaderboard
         /// <param name="e"></param>
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            SaveGame();
+        }
+
+        private void SaveGame()
+        {
             game.Players = players;
-            for(int i=0; i<games.Count;i++)
+            for (int i = 0; i < games.Count; i++)
             {
-                if(games[i].Id == guid)
+                if (games[i].Id == guid)
                 {
                     games[i] = game;
                 }
@@ -129,7 +134,23 @@ namespace Leaderboard
         {
             for(int i = 0; i < players.Count; i++)
             {
-                players[i].GameRounds.Add(new GameRound() { RoundName="Round "+(players[i].GameRounds.Count+1), score = 0});
+                GameRound gameRound = new GameRound() { RoundName = "Round " + (players[i].GameRounds.Count + 1), Score=0, IsReadOnly = false };
+                players[i].GameRounds.Add(gameRound);
+                for(int j = 0; j < players[i].GameRounds.Count-1; j++)
+                {
+                    players[i].GameRounds[j].IsReadOnly = true;
+                }
+            }
+        }
+
+        private void ScoreTextBox_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
+        {
+            foreach (char c in args.NewText)
+            {
+                if (!char.IsDigit(c))
+                {
+                    args.Cancel = true;
+                }
             }
         }
     }
