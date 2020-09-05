@@ -86,6 +86,7 @@ namespace Leaderboard
             Profile.GetInstance().AddGame(game);
             InputGame.Visibility = Visibility.Visible;
             GameDetPanel.Visibility = Visibility.Collapsed;
+            StatusText.Text = "Game added successfully";
         }
 
 
@@ -122,7 +123,7 @@ namespace Leaderboard
             string result = (string)e.Parameter;
             if(result == "deleted")
             {
-                GameDeleted.Text = "Game successfully deleted";
+                StatusText.Text = "Game successfully deleted";
             }
             base.OnNavigatedTo(e);
         }

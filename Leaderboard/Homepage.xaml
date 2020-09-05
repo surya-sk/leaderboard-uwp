@@ -44,7 +44,7 @@
                 <Button x:Name="CreateGameButton" Content="Submit" Click="CreateGameButton_Click"/>
                 <TextBlock x:Name="TestText"/>
             </StackPanel>
-            <TextBlock x:Name="GameDeleted"/>
+            <TextBlock x:Name="StatusText"/>
         </StackPanel>
 
         <ContentDialog Title="Enter Player Names" x:Name="NamesDialog" PrimaryButtonText="Save" PrimaryButtonClick="NamesDialog_PrimaryButtonClick" CloseButtonText="Cancel">
