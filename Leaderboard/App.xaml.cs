@@ -36,7 +36,7 @@ namespace Leaderboard
             if (value != null)
             {
                 // Apply theme choice.
-                App.Current.RequestedTheme = (ApplicationTheme)(int)value;
+                Current.RequestedTheme = (ApplicationTheme)(int)value;
             }
         }
 
