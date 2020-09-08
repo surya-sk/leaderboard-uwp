@@ -16,36 +16,38 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        
-        <StackPanel x:Name="HomePanel" Orientation="Vertical" Spacing="20" Margin="20,0,0,0">
-            <TextBlock Text="Leaderboard" FontSize="56"/>
-            <TextBlock Text="Welcome to Leaderboard- A Board Game Companion. Click 'Add Game' below to add a new game." TextWrapping="Wrap"/>
-            <TextBlock Text="The games you've added will appear in the navigtion bar. Press the hamburger menu to access it if the windows width is small." TextWrapping="Wrap"/>
-            <Button x:Name="InputGame" Click="InputGame_Click">
-                <RelativePanel>
-                    <FontIcon x:Name="AddIcon" Glyph="&#xE710;"/>
-                    <TextBlock Text=" Add Game" RelativePanel.RightOf="AddIcon" />
-                </RelativePanel>
-            </Button>
-            <StackPanel x:Name="GameDetPanel" Orientation="Vertical" Visibility="Collapsed" Spacing="30">
-                <TextBox x:Name="NameInput" PlaceholderText="Enter Game Name" Width="200" HorizontalAlignment="Left"/>
-                <muxc:RadioButtons x:Name="GameType" Header="Game Type" FontSize="28" MaxColumns="2" >
-                    <x:String>Leaderboard</x:String>
-                    <x:String>Eliminator</x:String>
-                </muxc:RadioButtons>
-                <StackPanel Orientation="Horizontal" Spacing="30">
-                    <TextBlock Text="Number of players: " FontSize="28"/>
-                    <TextBox x:Name="NumInput" BeforeTextChanging="NumInput_BeforeTextChanging"/>
+
+        <ScrollViewer>
+            <StackPanel x:Name="HomePanel" Orientation="Vertical" Spacing="20" Margin="20,0,0,0">
+                <TextBlock Text="Leaderboard" FontSize="56"/>
+                <TextBlock Text="Welcome to Leaderboard- A Board Game Companion. Click 'Add Game' below to add a new game." TextWrapping="Wrap"/>
+                <TextBlock Text="The games you've added will appear in the navigtion bar. Press the hamburger menu to access it if the windows width is small." TextWrapping="Wrap"/>
+                <Button x:Name="InputGame" Click="InputGame_Click">
+                    <RelativePanel>
+                        <FontIcon x:Name="AddIcon" Glyph="&#xE710;"/>
+                        <TextBlock Text=" Add Game" RelativePanel.RightOf="AddIcon" />
+                    </RelativePanel>
+                </Button>
+                <StackPanel x:Name="GameDetPanel" Orientation="Vertical" Visibility="Collapsed" Spacing="30">
+                    <TextBox x:Name="NameInput" PlaceholderText="Enter Game Name" Width="200" HorizontalAlignment="Left"/>
+                    <muxc:RadioButtons x:Name="GameType" Header="Game Type" FontSize="28" MaxColumns="2" >
+                        <x:String>Leaderboard</x:String>
+                        <x:String>Eliminator</x:String>
+                    </muxc:RadioButtons>
+                    <StackPanel Orientation="Horizontal" Spacing="30">
+                        <TextBlock Text="Number of players: " FontSize="28"/>
+                        <TextBox x:Name="NumInput" BeforeTextChanging="NumInput_BeforeTextChanging"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Enter max score(optional): " FontSize="28"/>
+                        <TextBox x:Name="MaxScoreInput" BeforeTextChanging="NumInput_BeforeTextChanging"/>
+                    </StackPanel>
+                    <Button x:Name="CreateGameButton" Content="Submit" Click="CreateGameButton_Click"/>
+                    <TextBlock x:Name="ValidationText" Foreground="Red"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Enter max score(optional): " FontSize="28"/>
-                    <TextBox x:Name="MaxScoreInput" BeforeTextChanging="NumInput_BeforeTextChanging"/>
-                </StackPanel>
-                <Button x:Name="CreateGameButton" Content="Submit" Click="CreateGameButton_Click"/>
-                <TextBlock x:Name="ValidationText" Foreground="Red"/>
+                <TextBlock x:Name="StatusText"/>
             </StackPanel>
-            <TextBlock x:Name="StatusText"/>
-        </StackPanel>
+        </ScrollViewer>
 
         <ContentDialog Title="Enter Player Names" x:Name="NamesDialog" PrimaryButtonText="Save" PrimaryButtonClick="NamesDialog_PrimaryButtonClick" CloseButtonText="Cancel">
             <ListView ItemsSource="{x:Bind Players}">
