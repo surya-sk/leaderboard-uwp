@@ -53,10 +53,12 @@
         </ListView>
 
 
-        <CommandBar Grid.Row="2">
-            <AppBarButton x:Name="AddRound" Label="Add round" Icon="Add" Click="AddRound_Click"/>
+        <CommandBar x:Name="CmdBar" Grid.Row="2">
             <AppBarButton x:Name="HomeButton" Label="Home" Icon="Home" Click="HomeButton_Click"/>
+            <AppBarButton x:Name="AddRound" Label="Add round" Icon="Add" Click="AddRound_Click"/>
             <AppBarButton x:Name="SaveButton" Label="Save" Icon="Save" Click="SaveButton_Click"/>
+            <AppBarButton x:Name="EditButton" Label="Edit" Icon="Edit" Click="EditButton_Click"/>
+            <AppBarButton x:Name="CancelEditButton" Label="Cancel" Icon="Cancel" Click="CancelEditButton_Click" Visibility="Collapsed"/>
             <AppBarButton x:Name="DeleteButton" Label="Delete" Icon="Delete" Click="DeleteButton_Click"/>
 
             <CommandBar.SecondaryCommands>

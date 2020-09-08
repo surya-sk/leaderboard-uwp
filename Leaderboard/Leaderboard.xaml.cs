@@ -153,5 +153,23 @@ namespace Leaderboard
                 }
             }
         }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            MyListView.SelectionMode = ListViewSelectionMode.Multiple;
+            DeleteButton.Label += " Player(s)";
+            AddRound.Label = "Add player";
+            EditButton.Visibility = Visibility.Collapsed;
+            CancelEditButton.Visibility = Visibility.Visible;
+        }
+
+        private void CancelEditButton_Click(object sender, RoutedEventArgs e)
+        {
+            MyListView.SelectionMode = ListViewSelectionMode.None;
+            DeleteButton.Label = "Delete game";
+            AddRound.Label = "Add round";
+            EditButton.Visibility = Visibility.Visible;
+            CancelEditButton.Visibility = Visibility.Collapsed;
+        }
     }
 }
