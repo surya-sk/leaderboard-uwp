@@ -33,7 +33,7 @@
                   Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="data:Player">
-                    <StackPanel Margin="0,0,0,20">
+                    <StackPanel Margin="0,0,0,40">
                         <TextBlock Text="{x:Bind PlayerName}"/>
                         <ListView ItemsSource="{x:Bind GameRounds}"
                                   ScrollViewer.HorizontalScrollBarVisibility="Auto"

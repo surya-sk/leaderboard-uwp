@@ -11,7 +11,6 @@ namespace Leaderboard.Models
     {
         public string PlayerName { get; set; }
         public ObservableCollection<GameRound> GameRounds { get; set; }
-        public int TotalScore { get; set; }
     }
 
     public class PlayerList

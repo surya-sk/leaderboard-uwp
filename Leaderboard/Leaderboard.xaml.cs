@@ -218,7 +218,7 @@ namespace Leaderboard
 
         private void PlayerNameDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Player newPlayer = new Player() { PlayerName = PNameInput.Text, TotalScore = 0, GameRounds = CreateGameRounds() };
+            Player newPlayer = new Player() { PlayerName = PNameInput.Text, GameRounds = CreateGameRounds() };
             players.Add(newPlayer);
             for(int i = 0; i < newPlayer.GameRounds.Count - 1; i++)
             {
