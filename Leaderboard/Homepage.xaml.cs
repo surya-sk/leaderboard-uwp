@@ -60,22 +60,29 @@ namespace Leaderboard
         /// <param name="e"></param>
         private void CreateGameButton_Click(object sender, RoutedEventArgs e)
         {
-            GameName = NameInput.Text;
-            Type = GameType.SelectedItem.ToString();
-            string temp = NumInput.Text;
-            Num = Convert.ToDouble(temp);
-            if(string.IsNullOrEmpty(MaxScoreInput.Text))
+            if(string.IsNullOrEmpty(NameInput.Text) || string.IsNullOrEmpty(NumInput.Text) || GameType.SelectedItem == null)
             {
-                MaxScore = 0;
+                ValidationText.Text = "Please fill out all the required details.";
             }
             else
             {
-                string temp2 = MaxScoreInput.Text;
-                MaxScore = Convert.ToInt16(temp2);
+                GameName = NameInput.Text;
+                Type = GameType.SelectedItem.ToString();
+                string temp = NumInput.Text;
+                Num = Convert.ToDouble(temp);
+                if (string.IsNullOrEmpty(MaxScoreInput.Text))
+                {
+                    MaxScore = 0;
+                }
+                else
+                {
+                    string temp2 = MaxScoreInput.Text;
+                    MaxScore = Convert.ToInt16(temp2);
+                }
+                ValidationText.Text = "";
+                CreatePlayerList();
+                InputPlayers();
             }
-            
-            CreatePlayerList();
-            InputPlayers();
             //this.Frame.Navigate(typeof(Homepage));
             //this.Frame.Navigate(typeof(Leaderboard));
         }
