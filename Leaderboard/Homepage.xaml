@@ -38,7 +38,7 @@
                     <TextBox x:Name="NumInput" BeforeTextChanging="NumInput_BeforeTextChanging" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Enter max score:" FontSize="28"/>
+                    <TextBlock Text="Enter max score(optional): " FontSize="28"/>
                     <TextBox x:Name="MaxScoreInput" BeforeTextChanging="NumInput_BeforeTextChanging"/>
                 </StackPanel>
                 <Button x:Name="CreateGameButton" Content="Submit" Click="CreateGameButton_Click"/>

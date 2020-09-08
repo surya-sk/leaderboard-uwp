@@ -64,8 +64,16 @@ namespace Leaderboard
             Type = GameType.SelectedItem.ToString();
             string temp = NumInput.Text;
             Num = Convert.ToDouble(temp);
-            string temp2 = MaxScoreInput.Text;
-            MaxScore = Convert.ToInt16(temp2);
+            if(string.IsNullOrEmpty(MaxScoreInput.Text))
+            {
+                MaxScore = 0;
+            }
+            else
+            {
+                string temp2 = MaxScoreInput.Text;
+                MaxScore = Convert.ToInt16(temp2);
+            }
+            
             CreatePlayerList();
             InputPlayers();
             //this.Frame.Navigate(typeof(Homepage));
