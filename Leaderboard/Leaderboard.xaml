@@ -52,6 +52,10 @@
             </ListView.ItemTemplate>
         </ListView>
 
+        <ContentDialog Title="Enter player name" x:Name="PlayerNameDialog" PrimaryButtonText="Submit" CloseButtonText="Close" PrimaryButtonClick="PlayerNameDialog_PrimaryButtonClick">
+            <TextBox x:Name="PNameInput" PlaceholderText="Enter name"/>
+        </ContentDialog>
+
 
         <CommandBar x:Name="CmdBar" Grid.Row="2">
             <AppBarButton x:Name="HomeButton" Label="Home" Icon="Home" Click="HomeButton_Click"/>

@@ -154,6 +154,7 @@ namespace Leaderboard
             if(EditMode)
             {
                 //Add new player
+                InputPlayerName();
             }
             else
             {
@@ -167,6 +168,16 @@ namespace Leaderboard
                     }
                 }
             }
+        }
+
+        private ObservableCollection<GameRound> CreateGameRounds()
+        {
+            ObservableCollection<GameRound> gameRounds = new ObservableCollection<GameRound>();
+            for (int i = 0; i < players[0].GameRounds.Count; i++)
+            {
+                gameRounds.Add(new GameRound() { RoundName = "Round " + (i + 1), Score = 0, IsReadOnly = false });
+            }
+            return gameRounds;
         }
 
         private void ScoreTextBox_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
@@ -200,5 +211,19 @@ namespace Leaderboard
             CancelEditButton.Visibility = Visibility.Collapsed;
         }
 
+        private async void InputPlayerName()
+        {
+            ContentDialogResult result = await PlayerNameDialog.ShowAsync();
+        }
+
+        private void PlayerNameDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            Player newPlayer = new Player() { PlayerName = PNameInput.Text, TotalScore = 0, GameRounds = CreateGameRounds() };
+            players.Add(newPlayer);
+            for(int i = 0; i < newPlayer.GameRounds.Count - 1; i++)
+            {
+                newPlayer.GameRounds[i].IsReadOnly = true;
+            }
+        }
     }
 }
