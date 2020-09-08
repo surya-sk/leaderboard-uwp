@@ -29,6 +29,7 @@ namespace Leaderboard
         private ObservableCollection<Game> games;
         private Game game;
         Guid guid;
+        static bool EditMode;
         public Leaderboard()
         {
             games = Profile.GetInstance().GetGamesList();
@@ -95,18 +96,36 @@ namespace Leaderboard
         /// <param name="e"></param>
         private async void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            ContentDialog deleteDialog = new ContentDialog()
+            if(EditMode)
             {
-                Title="Delete game permanently?",
-                Content="If you delete this game, you cannot recover it. Are you sure?",
-                PrimaryButtonText="Delete",
-                CloseButtonText="Cancel"
-            };
-            ContentDialogResult contentDialogResult = await deleteDialog.ShowAsync();
-            if(contentDialogResult == ContentDialogResult.Primary)
+                //Delete selected players
+                for(int i = 0; i < MyListView.SelectedItems.Count; i++ )
+                {
+                    Player selectedPlayer = (Player)MyListView.SelectedItems[i];
+                    for (int j = 0; j < players.Count; j++)
+                    {
+                        if (selectedPlayer == players[j])
+                        {
+                            players.Remove(selectedPlayer);
+                        }
+                    }
+                }  
+            }
+            else
             {
-                DeleteGame();
-                this.Frame.Navigate(typeof(Homepage), "deleted");
+                ContentDialog deleteDialog = new ContentDialog()
+                {
+                    Title = "Delete game permanently?",
+                    Content = "If you delete this game, you cannot recover it. Are you sure?",
+                    PrimaryButtonText = "Delete",
+                    CloseButtonText = "Cancel"
+                };
+                ContentDialogResult contentDialogResult = await deleteDialog.ShowAsync();
+                if (contentDialogResult == ContentDialogResult.Primary)
+                {
+                    DeleteGame();
+                    this.Frame.Navigate(typeof(Homepage), "deleted");
+                }
             }
         }
 
@@ -132,13 +151,20 @@ namespace Leaderboard
         /// <param name="e"></param>
         private void AddRound_Click(object sender, RoutedEventArgs e)
         {
-            for(int i = 0; i < players.Count; i++)
+            if(EditMode)
             {
-                GameRound gameRound = new GameRound() { RoundName = "Round " + (players[i].GameRounds.Count + 1), Score=0, IsReadOnly = false };
-                players[i].GameRounds.Add(gameRound);
-                for(int j = 0; j < players[i].GameRounds.Count-1; j++)
+                //Add new player
+            }
+            else
+            {
+                for (int i = 0; i < players.Count; i++)
                 {
-                    players[i].GameRounds[j].IsReadOnly = true;
+                    GameRound gameRound = new GameRound() { RoundName = "Round " + (players[i].GameRounds.Count + 1), Score = 0, IsReadOnly = false };
+                    players[i].GameRounds.Add(gameRound);
+                    for (int j = 0; j < players[i].GameRounds.Count - 1; j++)
+                    {
+                        players[i].GameRounds[j].IsReadOnly = true;
+                    }
                 }
             }
         }
@@ -157,6 +183,7 @@ namespace Leaderboard
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             MyListView.SelectionMode = ListViewSelectionMode.Multiple;
+            EditMode = true;
             DeleteButton.Label += " Player(s)";
             AddRound.Label = "Add player";
             EditButton.Visibility = Visibility.Collapsed;
@@ -166,10 +193,12 @@ namespace Leaderboard
         private void CancelEditButton_Click(object sender, RoutedEventArgs e)
         {
             MyListView.SelectionMode = ListViewSelectionMode.None;
+            EditMode = false;
             DeleteButton.Label = "Delete game";
             AddRound.Label = "Add round";
             EditButton.Visibility = Visibility.Visible;
             CancelEditButton.Visibility = Visibility.Collapsed;
         }
+
     }
 }
