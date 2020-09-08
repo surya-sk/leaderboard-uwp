@@ -14,7 +14,7 @@
 
     <Grid>
 
-        <muxc:NavigationView Name="NavView" PaneTitle="Games" PaneDisplayMode="Auto" ItemInvoked="NavView_ItemInvoked" IsSettingsVisible="False" MenuItemsSource="{x:Bind games}">
+        <muxc:NavigationView Name="NavView" PaneTitle="Games" PaneDisplayMode="Auto" ItemInvoked="NavView_ItemInvoked" IsSettingsVisible="False" MenuItemsSource="{x:Bind games}" IsBackButtonVisible="Collapsed">
             <muxc:NavigationView.MenuItemTemplate>
                 <DataTemplate x:DataType="data:Game">
                     <muxc:NavigationViewItem Tag="{x:Bind Id, Mode=TwoWay}" Content="{x:Bind GameName}" Icon="Play"/>
