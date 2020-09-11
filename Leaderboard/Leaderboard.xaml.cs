@@ -225,5 +225,18 @@ namespace Leaderboard
                 newPlayer.GameRounds[i].IsReadOnly = true;
             }
         }
+
+        private void ScoreTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            for(int i = 0; i < players.Count; i++)
+            {
+                int currScore = 0;
+                for(int j = 0; j < players[i].GameRounds.Count; j++)
+                {
+                    currScore += players[i].GameRounds[j].Score;
+                }
+                players[i].TotalScore = currScore;
+            }
+        }
     }
 }
