@@ -234,6 +234,7 @@ namespace Leaderboard
                 for(int j = 0; j < players[i].GameRounds.Count; j++)
                 {
                     currScore += players[i].GameRounds[j].Score;
+                    Debug.WriteLine("Curent score is " + currScore);
                 }
                 players[i].TotalScore = currScore;
             }
