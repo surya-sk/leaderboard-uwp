@@ -34,7 +34,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="data:Player">
                     <StackPanel Margin="0,0,0,40">
-                        <Grid>
+                        <Grid Background="{Binding PlayerColor}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="3*"/>
                                 <ColumnDefinition Width="2*"/>

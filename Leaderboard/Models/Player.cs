@@ -13,6 +13,7 @@ namespace Leaderboard.Models
         public string PlayerName { get; set; }
         public ObservableCollection<GameRound> GameRounds { get; set; }
         private int totalScore;
+        private string playerColor;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -22,6 +23,14 @@ namespace Leaderboard.Models
             {
                 totalScore = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TotalScore)));
+            }
+        }
+
+        public string PlayerColor { get => playerColor;
+            set
+            {
+                playerColor = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PlayerColor)));
             }
         }
     }

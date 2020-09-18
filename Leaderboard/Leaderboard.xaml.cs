@@ -228,6 +228,8 @@ namespace Leaderboard
 
         private void ScoreTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            int highestScore = 0;
+            int lowestScore = Int16.MaxValue;
             for(int i = 0; i < players.Count; i++)
             {
                 int currScore = 0;
@@ -237,6 +239,25 @@ namespace Leaderboard
                     Debug.WriteLine("Curent score is " + currScore);
                 }
                 players[i].TotalScore = currScore;
+                if(currScore > highestScore)
+                {
+                    highestScore = currScore;
+                }
+                else if(currScore < lowestScore)
+                {
+                    lowestScore = currScore;
+                }
+            }
+            for(int i = 0; i < players.Count; i++)
+            {
+                if(players[i].TotalScore == highestScore)
+                {
+                    players[i].PlayerColor = "Green";
+                }
+                else if(players[i].TotalScore == lowestScore)
+                {
+                    players[i].PlayerColor = "Red";
+                }
             }
         }
     }
