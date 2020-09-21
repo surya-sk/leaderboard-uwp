@@ -92,7 +92,7 @@ namespace Leaderboard
         /// </summary>
         private void CreateRoundOne()
         {
-            GameRounds.Add(new GameRound { RoundName = "Round " + (GameRounds.Count + 1), Score=0, IsReadOnly = false});
+            GameRounds.Add(new GameRound { RoundName = "Round " + (GameRounds.Count + 1), Score=5, IsReadOnly = false});
         }
 
         /// <summary>

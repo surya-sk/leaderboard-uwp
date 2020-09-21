@@ -254,11 +254,12 @@ namespace Leaderboard
                 {
                     players[i].PlayerColor = "Green";
                 }
-                else if(players[i].TotalScore == lowestScore)
+                if(players[i].TotalScore == lowestScore)
                 {
                     players[i].PlayerColor = "Red";
                 }
             }
         }
+
     }
 }
