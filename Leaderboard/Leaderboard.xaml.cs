@@ -226,40 +226,54 @@ namespace Leaderboard
             }
         }
 
+        /// <summary>
+        /// Updates the total score when the content of the textbox changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ScoreTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             int highestScore = 0;
             int lowestScore = Int16.MaxValue;
-            for(int i = 0; i < players.Count; i++)
+            for (int i = 0; i < players.Count; i++)
             {
                 int currScore = 0;
-                for(int j = 0; j < players[i].GameRounds.Count; j++)
+                for (int j = 0; j < players[i].GameRounds.Count; j++)
                 {
                     currScore += players[i].GameRounds[j].Score;
                     Debug.WriteLine("Curent score is " + currScore);
                 }
                 players[i].TotalScore = currScore;
-                if(currScore > highestScore)
+                if (currScore > highestScore)
                 {
                     highestScore = currScore;
                 }
-                else if(currScore < lowestScore)
+                else if (currScore < lowestScore)
                 {
                     lowestScore = currScore;
                 }
             }
-            for(int i = 0; i < players.Count; i++)
+            SetPlayerColours(highestScore, lowestScore);
+        }
+
+        /// <summary>
+        /// Sets the player colour according to the highest and lowest score
+        /// </summary>
+        /// <param name="highestScore"></param>
+        /// <param name="lowestScore"></param>
+        private void SetPlayerColours(int highestScore, int lowestScore)
+        {
+            for (int i = 0; i < players.Count; i++)
             {
-                if(players[i].TotalScore == highestScore)
+                if (players[i].TotalScore == highestScore)
                 {
                     players[i].PlayerColor = "Green";
                 }
-                if(players[i].TotalScore == lowestScore)
+                if (players[i].TotalScore == lowestScore)
                 {
                     players[i].PlayerColor = "Red";
                 }
             }
         }
-
     }
 }
