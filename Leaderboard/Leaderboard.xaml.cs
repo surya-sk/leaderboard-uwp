@@ -265,13 +265,16 @@ namespace Leaderboard
         {
             for (int i = 0; i < players.Count; i++)
             {
-                if (players[i].TotalScore == highestScore)
+                if(players[i].GameRounds.Count > 1)
                 {
-                    players[i].PlayerColor = "Green";
-                }
-                if (players[i].TotalScore == lowestScore)
-                {
-                    players[i].PlayerColor = "Red";
+                    if (players[i].TotalScore == highestScore)
+                    {
+                        players[i].PlayerColor = "Green";
+                    }
+                    if (players[i].TotalScore == lowestScore)
+                    {
+                        players[i].PlayerColor = "Red";
+                    }
                 }
             }
         }
